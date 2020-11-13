@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ProyectoZoomX</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="send">SEND</string>
+    <string name="enviar">ENVIAR</string>
+    <string name="usuario">Usuario</string>
+    <string name="busqueda_salas">Busqueda Salas</string>
+    <string name="opciones">Opciones</string>
+    <string name="salir">Salir</string>
+    <string name="abm_salas">ABM Salas</string>
+    <string name="nombre">Nombre</string>
+    <string name="responsable">Responsable</string>
+    <string name="fecha_reserva">Fecha Reserva</string>
+    <string name="tiempo_de_reserva">Tiempo de Reserva</string>
+    <string name="url_de_icono">URL de Icono</string>
+    <string name="ingresar">ingresar</string>
+    <string name="guardar">guardar</string>
+    <string name="regresar">regresar</string>
+    <string name="ingresar_sala">Ingresar sala</string>
+</resources>

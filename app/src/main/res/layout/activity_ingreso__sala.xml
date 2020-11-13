@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ingreso_Sala"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Ingreso_Sala">
+
+    <TextView
+        android:id="@+id/text_nombre"
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:text="@string/nombre"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/text_Responsable"
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:text="@string/responsable"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/text_Fecha_Reserva"
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:text="@string/fecha_reserva"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/text_Tiempo_Reserva"
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        android:text="@string/tiempo_de_reserva"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_Url"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:text="@string/url_de_icono"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_guardar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ingresar_sala" />
+
+    <Button
+        android:id="@+id/btn_regresar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/regresar" />
+</LinearLayout>
