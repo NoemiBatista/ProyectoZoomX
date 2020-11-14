@@ -9,10 +9,11 @@ import com.example.proyectozoomx.entities.Usuario
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
 import okhttp3.*
-import okhttp3.Credentials.basic
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import org.json.JSONArray
 import org.json.JSONObject
+
+// comentario de prueba
 
 class ClientZoomApi(private val Url_Api: String) : ZoomApi {
 
@@ -23,7 +24,7 @@ class ClientZoomApi(private val Url_Api: String) : ZoomApi {
                .url(://localhost:8080/usuario/")
                 .header("Authorization", Credentials.basic(usuario.username, usuario.password))
                 .build()
-            val response = client.newCall(request).execute()"http
+            val response = client.newCall(request).execute()"http"
             if (response.code == 200) {
                 val body = response.body!!.string()
                 Log.d("ClientZoomApi", body + usuario)
@@ -50,7 +51,7 @@ class ClientZoomApi(private val Url_Api: String) : ZoomApi {
     }
 
 
-    override suspend fun ingresarSala(usuario: Identificacion, sala: Sala): Unit =
+     suspend fun ingresarSala(usuario: Identificacion, sala: Sala): Unit =
         withContext(Dispatcher.IO) {
             val client = OkHttpClient()
             val Json = "application/json; charset=utf-8".toMediaTypeOrNull()
