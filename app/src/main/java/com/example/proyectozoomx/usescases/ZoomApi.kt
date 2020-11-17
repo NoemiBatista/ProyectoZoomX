@@ -5,7 +5,5 @@ import com.example.proyectozoomx.entities.Usuario
 import org.json.JSONObject
 
 interface ZoomApi {
-     fun send(): JSONObject
-
-     suspend fun accesoLogin(usuario: Identificacion): Usuario
+     suspend fun send(): Usuario
 }
