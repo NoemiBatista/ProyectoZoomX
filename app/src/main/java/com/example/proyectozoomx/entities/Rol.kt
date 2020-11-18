@@ -1,5 +1,5 @@
 package com.example.proyectozoomx.entities
 
-enum class Rol{
-    USER, ADMIN, INVALID
+enum class Rol {
+    ADMIN, USER
 }
