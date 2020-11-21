@@ -2,36 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ingreso_Sala"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".IngresoSalaActivity">
+    tools:context=".ModificarActivity">
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ingresar" />
+        android:text="Modificar" />
+
+    <EditText
+        android:id="@+id/edIdABuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Id a Buscar"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btn_BuscarPorId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar" />
 
     <TextView
-        android:id="@+id/tvNombre"
-        android:layout_width="259dp"
+        android:id="@+id/tvNombreModificar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nombre"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/tvResponsable"
-        android:layout_width="259dp"
+        android:id="@+id/tvResponsableModificar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/responsable"
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/tvFechaReserva"
-        android:layout_width="259dp"
+        android:id="@+id/tvFehcaReservaModificar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="2020-11-10T10:00 "
@@ -40,8 +51,8 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/tvTiempoReserva"
-        android:layout_width="259dp"
+        android:id="@+id/tvTiempoReservaModificar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="time"
@@ -49,20 +60,20 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tvTextUrl"
-        android:layout_width="258dp"
+        android:id="@+id/tvUrModificar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/url_de_icono"
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btn_guardar"
+        android:id="@+id/btn_guardarModificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ingresar_sala" />
 
     <Button
-        android:id="@+id/btn_regresar"
+        android:id="@+id/btn_regresarModificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/regresar" />

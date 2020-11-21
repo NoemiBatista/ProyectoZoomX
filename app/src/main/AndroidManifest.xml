@@ -11,11 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Ingreso_Sala" />
-        <activity android:name=".Zoom_Menu_Principal" />
-        <activity android:name=".ZoomLogin" />
-
-
+        <activity android:name=".BuscarActivity"></activity>
+        <activity android:name=".EliminarActivity" />
+        <activity android:name=".ModificarActivity" />
+        <activity android:name=".ConfigActivity" />
+        <activity android:name=".IngresoSalaActivity" />
+        <activity android:name=".ZoomMenuPrincipalActivity" />
+        <activity android:name=".ZoomLoginActivity" />
     </application>
 
 </manifest>
