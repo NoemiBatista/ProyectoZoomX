@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BuscarActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar" />
+
+    <EditText
+        android:id="@+id/edNombreSalaABuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Ingrese Nombre Sala"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnBuscarSalaPorNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar por Nombre" />
+
+    <EditText
+        android:id="@+id/edResponsableABuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Ingrese Responsable Sala"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnBuscarPorResponsable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar por Responsable" />
+
+    <EditText
+        android:id="@+id/edFechaABuscar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Ingrese Fecha Reserva"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnBuscarPorFecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar por Fecha" />
+
+    <TextView
+        android:id="@+id/tvResultadoBusqueda"
+        android:layout_width="match_parent"
+        android:layout_height="104dp" />
+
+    <Button
+        android:id="@+id/btnRegresarBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Regresar" />
+</LinearLayout>

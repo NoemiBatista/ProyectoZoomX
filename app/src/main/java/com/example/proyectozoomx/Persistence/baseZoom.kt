@@ -9,7 +9,7 @@ class baseZoom (
     factory: SQLiteDatabase.CursorFactory?,
     version: Int) : SQLiteOpenHelper(context, name, factory, version) {
 
-    private val sqlCreate = "create table urlj (id INTEGER, nombre TEXT)"
+    private val sqlCreate = "create table urlApi (url Varchar, puerto Integrer)"
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(sqlCreate)
