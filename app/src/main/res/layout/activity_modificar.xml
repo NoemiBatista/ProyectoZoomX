@@ -13,7 +13,6 @@
         android:text="Modificar" />
 
     <EditText
-        android:id="@+id/edIdABuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -27,21 +26,18 @@
         android:text="Buscar" />
 
     <TextView
-        android:id="@+id/tvNombreModificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nombre"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/tvResponsableModificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/responsable"
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/tvFehcaReservaModificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -51,7 +47,6 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/tvTiempoReservaModificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -60,7 +55,6 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tvUrModificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/url_de_icono"
