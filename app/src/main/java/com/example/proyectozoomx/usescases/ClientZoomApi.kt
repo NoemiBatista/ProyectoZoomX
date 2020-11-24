@@ -25,22 +25,44 @@ class ClientZoomApi(
                 .header("Authorization", Credentials.basic(usuario.username, usuario.password))
                 .build()
             val response = client.newCall(request).execute()
-            val body = response.body!!.string()
-            response.close()
-            return@withContext toUsuario(JSONObject(body))
+            if (response.code == 200) {
+                val body = response.body!!.string()
+                response.close()
+                return@withContext toUsuario(JSONObject(body))
+            } else {
+                return@withContext Usuario(
+                    usuario.username,
+                    Rol.ADMIN
+                ) //TODO AGREGAR EL ROL DE INVALID A EL ADMIN QUE PUSE PARA QUE NO EXPLOTE
+            }
         }
 
     override suspend fun buscarPorId(id: Int): Sala =
         withContext(Dispatchers.IO) {
             val client = OkHttpClient()
             val request = Request.Builder()
-                .url(urlApi+"/sala/$id")
+                .url(urlApi + "/sala/$id")
                 .header("Authorization", Credentials.basic(usuario.username, usuario.password))
                 .build()
             val response = client.newCall(request).execute()
             val body = response.body!!.string()
             response.close()
             return@withContext toSala(JSONObject(body))
+        }
+
+    override suspend fun buscarPorNombre(nombre: String): List<Sala> =
+        withContext(Dispatchers.IO) {
+            val client = OkHttpClient()
+            val request = Request.Builder()
+                .url(urlApi + "/sala/search/findAllByNombreContains?nombre=$nombre")
+                .header("Authorization", Credentials.basic(usuario.username, usuario.password))
+                .build()
+            val response = client.newCall(request).execute()
+            val body = response.body!!.string()
+            response.close()
+            return@withContext toSalasList(JSONObject(body))
+
+
         }
 
 
@@ -55,6 +77,7 @@ class ClientZoomApi(
         }
         return Usuario(username, rol)
     }
+
     fun toSala(body: JSONObject): Sala {
         val nombre = body.getString("nombre")
         val responsable = body.getString("responsable")
@@ -62,6 +85,28 @@ class ClientZoomApi(
         val tiempoReservaEnHoras = body.getInt("tiempoReservaEnHoras")
         val url = body.getString("icono")
 
-        return Sala(nombre,responsable, fechaDeReserva,tiempoReservaEnHoras,url)
+        return Sala(nombre, responsable, fechaDeReserva, tiempoReservaEnHoras, url)
     }
+
+    fun toSalasList(body: JSONObject): List<Sala> {
+        val salas = ArrayList<Sala>()
+
+        val embedded = body.getJSONObject("_embedded")
+        val arraySalas = embedded.getJSONArray("sala")
+
+        for (i in 0 until arraySalas.length()) {
+            val jsonSala = arraySalas.getJSONObject(i)
+            val nombre = jsonSala.getString("nombre")
+            val responsable = jsonSala.getString("responsable")
+            val fechaDeReserva = LocalDateTime.parse(jsonSala.getString("fechaDeReserva"))
+            val tiempoReservaEnHoras = jsonSala.getInt("tiempoReservaEnHoras")
+            val url = jsonSala.getString("icono")
+            val sala: Sala = Sala(nombre, responsable, fechaDeReserva, tiempoReservaEnHoras, url)
+            salas.add(sala)
+        }
+        return salas
+    }
+
+
 }
+

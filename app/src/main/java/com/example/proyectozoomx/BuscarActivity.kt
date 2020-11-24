@@ -2,11 +2,16 @@ package com.example.proyectozoomx
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.lifecycleScope
+import com.example.proyectozoomx.entities.Sala
+import com.example.proyectozoomx.usescases.ZoomApi
 import kotlinx.android.synthetic.main.activity_buscar.*
 import kotlinx.coroutines.launch
 
 class BuscarActivity : AppCompatActivity() {
+    private lateinit var api: ZoomApi
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buscar)
@@ -17,7 +22,8 @@ class BuscarActivity : AppCompatActivity() {
     private fun init() {
         btnBuscarSalaPorNombre.setOnClickListener{
             lifecycleScope.launch {
-                //TODO  VER VIDEO  DEL 20/11
+                val salas : List<Sala> = api.buscarPorNombre("sala")
+                Log.d("salas",salas.toString())
             }
         }
         btnBuscarPorFecha.setOnClickListener{

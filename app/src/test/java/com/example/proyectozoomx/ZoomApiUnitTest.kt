@@ -64,8 +64,21 @@ class ZoomApiUnitTest {
 
             assertThat(sala).isNotNull
 
+        }
+    }
+
+    @Test
+    @Throws(IOException::class)
+    fun givenNombre_whenBuscarPornombre_thenGetSalasList() {
+        runBlocking {
+            val credenciales = Credenciales("adm", "adm")
+            val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
+            val salas = api.buscarPorNombre("Sala")
+
+            assertThat(salas).isNotNull
 
         }
     }
+
 
 }
