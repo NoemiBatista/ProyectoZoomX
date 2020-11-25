@@ -5,7 +5,7 @@ import android.util.Log
 import com.example.proyectozoomx.entities.Parametros
 
 
-data class ParametrosSQL (val HelperSql: SQLiteOpenHelper): Repositorio_Parametros() {
+data class ParametrosSQL (val HelperSql: SQLiteOpenHelper): Repositorio_Parametros {
 
     private val datos: String = "ParamtrosSentenciaSQL"
 

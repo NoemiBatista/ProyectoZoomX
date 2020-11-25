@@ -10,35 +10,38 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Configuracion"
+        android:text="@string/configuracion"
         android:textSize="14sp"
-        android:inputType="number"/>
+        android:inputType="number"
+        tools:ignore="TextViewEdits" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Ingrese Puerto"
-        android:inputType="textPersonName" />
+        android:hint="@string/ingrese_puerto"
+        android:inputType="textPersonName"
+        android:autofillHints="no"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Ingrese Url"
-        android:inputType="textPersonName" />
+        android:hint="@string/ingrese_url"
+        android:inputType="textPersonName"
+        android:autofillHints="no"/>
 
     <Button
         android:id="@+id/btnGuardar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar" />
+        android:text="@string/guardar" />
 
     <Button
         android:id="@+id/btnVolver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Volver" />
+        android:text="@string/volver" />
 
 
 </LinearLayout>

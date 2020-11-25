@@ -17,29 +17,29 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="#536DFE"
-        android:text="Registrar"
+        android:text="@string/registrar"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_actualizar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="#536DFE"
-        android:text="Actualizar"
+        android:text="@string/actualizar"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_Eliminar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="#536DFE"
-        android:text="Eliminar"
+        android:text="@string/eliminar"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="#536DFE"
-        android:text="Configuracion"
+        android:text="@string/configuracion"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold" />

@@ -10,20 +10,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Modificar" />
+        android:text="@string/modificar" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Id a Buscar"
-        android:inputType="number" />
+        android:hint="@string/id_a_buscar"
+        android:inputType="number"
+        android:autofillHints="no"/>
 
     <Button
         android:id="@+id/btn_BuscarPorId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buscar" />
+        android:text="@string/buscar_por_id" />
 
     <TextView
         android:layout_width="match_parent"
@@ -44,7 +45,8 @@
         android:hint="2020-11-10T10:00 "
         android:inputType="datetime"
         android:text="@string/fecha_reserva"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:autofillHints="no"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -52,7 +54,8 @@
         android:ems="10"
         android:inputType="time"
         android:text="@string/tiempo_de_reserva"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:autofillHints="no"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -64,7 +67,7 @@
         android:id="@+id/btn_guardarModificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ingresar_sala" />
+        android:text="@string/modificar_sala" />
 
     <Button
         android:id="@+id/btn_regresarModificar"

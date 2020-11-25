@@ -38,13 +38,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buscar por Responsable" />
+        android:text="@string/buscar_por_responsable" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Ingrese Fecha Reserva"
+        android:hint="@string/ingrese_fecha_reserva"
         android:inputType="textPersonName"
         android:autofillHints="no"/>
 

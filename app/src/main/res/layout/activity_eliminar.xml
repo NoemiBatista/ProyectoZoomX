@@ -10,20 +10,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eliminar" />
+        android:text="@string/eliminar" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Id a Eliminar"
-        android:inputType="number" />
+        android:hint="@string/id_a_eliminar"
+        android:inputType="number"
+        android:autofillHints="no"/>
 
     <Button
         android:id="@+id/btn_EliminarPorId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eliminar" />
+        android:text="@string/eliminar" />
 
     <Button
         android:id="@+id/btn_regresarEliminar"

@@ -6,10 +6,13 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.proyectozoomx.entities.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
 import okhttp3.OkHttpClient
 import okhttp3.Credentials
 import kotlinx.coroutines.withContext
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 
 import org.json.JSONObject
@@ -17,10 +20,11 @@ import java.time.LocalDateTime
 
 // comentario de prueba
 
-class ClientZoomApi(
+abstract class ClientZoomApi(
     private val usuario: Credenciales,
     private val urlApi: String
 ) : ZoomApi {
+
     //LOGIN
     override suspend fun send(): Usuario =
         withContext(Dispatchers.IO) {
@@ -47,8 +51,35 @@ class ClientZoomApi(
         return Usuario(username, rol)
     }
 
+    //INGRESO DE SALA
+     suspend fun ingresarSala(usuario: Credenciales, sala: Sala): Unit =
+        withContext(Dispatcher.IO) {
+            val client = OkHttpClient()
+            val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
+            //val Json = ""
+            val body = convertirSalaIngreso(sala)
+            val request: Request = Request.Builder()
+                .url("http://localhost:8080/sala")
+                .header("Authorization", Credentials.basic(usuario.username, usuario.password))
+                .post(body).build()
+            val response = client.newCall(request).execute()
+
+        }
+
+    fun convertirSalaIngreso(sala: Sala): JSONObject {
+
+        val jSON = JSONObject()
+        jSON.put("nombre", sala.nombre)
+        jSON.put("responsable", sala.responsable)
+        jSON.put("fecha_Reserva", sala.fechaDeReserva)
+        jSON.put("tiempo_reservas_Hs", sala.tiempoReservaEnHoras)
+        jSON.put("icono", sala.url)
+
+        return jSON
+
+    }
+
     //BUSQUEDA DE SALA POR NOMBRE
-    //@RequiresApi(Build.VERSION_CODES.O)
     override suspend fun buscarSala(usuario: Credenciales, nombre: String): List<Sala> =
         withContext(Dispatchers.IO) {
             val client = OkHttpClient()
@@ -68,8 +99,7 @@ class ClientZoomApi(
             }
         }
 
-
-    // @RequiresApi(Build.VERSION_CODES.O)
+    //CONVERTIR SALA
     fun convertirSala(body: JSONObject): List<Sala> {
 
         val salas: ArrayList<Sala>()
@@ -87,16 +117,16 @@ class ClientZoomApi(
             val sala: Sala = Sala(
                 nombre, responsable,
                 LocalDateTime.parse(fechaReserva),
-                tiempoReserva.toInt(), iconoURL
-            )
+                tiempoReserva.toInt(), iconoURL)
 
-            //      salas.add(sala)
+            salas.add(sala)
         }
-        //return salas
-
-
+        return salas
+    }
+}
+/*
         //BUSCAR POR ID
-        override suspend fun buscarPorId(id: Int): Sala =
+        suspend fun buscarPorId(id: Int): Sala =
             withContext(Dispatchers.IO) {
                 val client = OkHttpClient()
                 val request = Request.Builder()
@@ -106,10 +136,11 @@ class ClientZoomApi(
                 val response = client.newCall(request).execute()
                 val body = response.body!!.string()
                 response.close()
-                return@withContext tSala(JSONObject(body))
+                return@withContext convertirSalaBusquedaID(JSONObject(body))
             }
 
-        fun tSala(body: JSONObject): Sala {
+
+        fun convertirSalaBusquedaID(body: JSONObject): Sala {
             val nombre = body.getString("nombre")
             val responsable = body.getString("responsable")
             val fechaDeReserva = LocalDateTime.parse(body.getString("fechaDeReserva"))
@@ -118,6 +149,4 @@ class ClientZoomApi(
 
             return Sala(nombre, responsable, fechaDeReserva, tiempoReservaEnHoras, url)
         }
-    }
-}
-
+*/

@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:autofillHints="no"/>
 
     <Button
         android:id="@+id/send_login"
@@ -34,6 +35,6 @@
         android:id="@+id/cfgButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Config" />
+        android:text="@string/configuracion" />
 
 </LinearLayout>
