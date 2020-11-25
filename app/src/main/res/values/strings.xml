@@ -25,4 +25,8 @@
     <string name="guardar">guardar</string>
     <string name="regresar">regresar</string>
     <string name="ingresar_sala">Ingresar sala</string>
+    <string name="modificar">Modificar</string>
+    <string name="id_a_buscar">Id a Buscar</string>
+    <string name="buscar">Buscar</string>
+    <string name="modificar_sala">MODIFICAR SALA</string>
 </resources>

@@ -1,6 +1,7 @@
 import android.os.Build
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.proyectozoomx.entities.Credenciales
+import com.example.proyectozoomx.entities.Sala
 import com.example.proyectozoomx.usescases.ClientZoomApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -14,6 +15,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
 import java.io.IOException
+import java.time.LocalDateTime
 
 @RunWith(AndroidJUnit4::class)
 @Config(sdk = [Build.VERSION_CODES.P])
@@ -69,7 +71,7 @@ class ZoomApiUnitTest {
 
     @Test
     @Throws(IOException::class)
-    fun givenNombre_whenBuscarPornombre_thenGetSalasList() {
+    fun givenNombre_whenBuscarPorNombre_thenGetSalasList() {
         runBlocking {
             val credenciales = Credenciales("adm", "adm")
             val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
@@ -81,4 +83,87 @@ class ZoomApiUnitTest {
     }
 
 
+    @Test
+    @Throws(IOException::class)
+    fun givenResponsable_whenBuscarPorResponsable_thenGetSalasList() {
+        runBlocking {
+            val credenciales = Credenciales("adm", "adm")
+            val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
+            val salas = api.buscarPorResponsable(" ")
+
+            assertThat(salas).isNotNull
+
+        }
+    }
+
+    @Test
+    @Throws(IOException::class)
+    fun givenFecha_whenBuscarPorFecha_thenGetSalasList() {
+        runBlocking {
+            val credenciales = Credenciales("adm", "adm")
+            val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
+            val salas = api.buscarPorFecha(LocalDateTime.parse("2020-11-26T00:56:00"))
+
+            assertThat(salas)
+
+        }
+    }
+
+    @Test
+    @Throws(IOException::class)
+    fun givenAdmin_whenPostSala_thenGetResponse201() {
+        runBlocking {
+            val credenciales = Credenciales("adm", "adm")
+            val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
+            api.ingresarSala(
+                sala = Sala(
+                    "Otra Prueba Javier",
+                    "Otro Responsable",
+                    (LocalDateTime.parse("2020-11-26T00:56:00")),
+                    2,
+                    "https://cdn.pixabay.com/photo/2020/09/13/13/00/charles-bridge-556817"
+                )
+            )
+
+
+        }
+    }
+
+    @Test
+    @Throws(IOException::class)
+    fun givenAdmin_whenDeleteSala_thenGetResponse204() {
+        runBlocking {
+            val credenciales = Credenciales("adm", "adm")
+            val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
+            api.borrarSala(8)
+
+
+        }
+    }
+
+    @Test
+    @Throws(IOException::class)
+    fun givenAdmin_whenPatchSala_thenGetResponse204() {
+        runBlocking {
+            val credenciales = Credenciales("adm", "adm")
+            val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
+            api.modificarSala(
+                10,
+                sala = Sala(
+                    "sala modificada",
+                    "responsable modificado",
+                    (LocalDateTime.parse("2020-11-26T00:56:00")),
+                    10,
+                    "https://cdn.pixabay.com/photo/2020/09/13/13/00/charles-bridge-556817"
+                )
+            )
+
+
+        }
+    }
 }
+
+
+
+
+

@@ -10,21 +10,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Modificar" />
+        android:text="@string/modificar" />
 
     <EditText
         android:id="@+id/edIdABuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Id a Buscar"
+        android:hint="@string/id_a_buscar"
         android:inputType="number" />
 
     <Button
         android:id="@+id/btn_BuscarPorId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buscar" />
+        android:text="@string/buscar" />
 
     <TextView
         android:id="@+id/tvNombreModificar"
@@ -70,7 +70,7 @@
         android:id="@+id/btn_guardarModificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ingresar_sala" />
+        android:text="@string/modificar_sala" />
 
     <Button
         android:id="@+id/btn_regresarModificar"
