@@ -1,0 +1,472 @@
+Index: app/src/main/java/com/example/proyectozoomx/BuscarActivity.kt
+===================================================================
+--- app/src/main/java/com/example/proyectozoomx/BuscarActivity.kt	(revision 130aa9b7ebab7665c66b94120529efbfbb482786)
++++ app/src/main/java/com/example/proyectozoomx/BuscarActivity.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -3,6 +3,7 @@
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
+ import android.util.Log
++import android.widget.EditText
+ import androidx.lifecycle.lifecycleScope
+ import com.example.proyectozoomx.entities.Sala
+ import com.example.proyectozoomx.usescases.ZoomApi
+@@ -20,8 +21,10 @@
+     }
+ 
+     private fun init() {
++
+         btnBuscarSalaPorNombre.setOnClickListener{
+             lifecycleScope.launch {
++
+                 val salas : List<Sala> = api.buscarPorNombre("sala") // TODO en nombre va el recibido desde el tex
+                 Log.d("salas",salas.toString())
+             }
+Index: app/src/main/java/com/example/proyectozoomx/IngresoSalaActivity.kt
+===================================================================
+--- app/src/main/java/com/example/proyectozoomx/IngresoSalaActivity.kt	(revision 130aa9b7ebab7665c66b94120529efbfbb482786)
++++ app/src/main/java/com/example/proyectozoomx/IngresoSalaActivity.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -15,6 +15,9 @@
+         init()
+     }
+ 
++
++
++
+     private fun init() {
+         btn_guardar.setOnClickListener {
+             lifecycleScope.launch {
+Index: app/src/main/java/com/example/proyectozoomx/NavegacionValues.kt
+===================================================================
+--- app/src/main/java/com/example/proyectozoomx/NavegacionValues.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
++++ app/src/main/java/com/example/proyectozoomx/NavegacionValues.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -0,0 +1,28 @@
++package com.example.proyectozoomx
++
++import android.content.Intent
++import android.os.Bundle
++import androidx.appcompat.app.AppCompatActivity
++import com.example.proyectozoomx.entities.Credenciales
++import com.example.proyectozoomx.entities.Usuario
++import java.lang.Class
++
++class NavegacionValues(
++    val usuario: Usuario,
++    val credenciales: Credenciales,
++    val origen: AppCompatActivity,
++    val destino: Class<out AppCompatActivity>
++) {
++
++    fun go() {
++        val intent = Intent(origen, destino)
++        val bundle = Bundle()
++        bundle.putSerializable("usuario", usuario)
++        bundle.putSerializable("credenciales", credenciales)
++        intent.putExtras(intent)
++        origen.startActivity(intent)
++        origen.finish()
++
++
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/proyectozoomx/ZoomLoginActivity.kt
+===================================================================
+--- app/src/main/java/com/example/proyectozoomx/ZoomLoginActivity.kt	(revision 130aa9b7ebab7665c66b94120529efbfbb482786)
++++ app/src/main/java/com/example/proyectozoomx/ZoomLoginActivity.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -3,6 +3,12 @@
+ import android.os.Bundle
+ import androidx.appcompat.app.AppCompatActivity
+ import androidx.lifecycle.lifecycleScope
++import com.example.proyectozoomx.Persistence.baseZoom
++import com.example.proyectozoomx.entities.Credenciales
++import com.example.proyectozoomx.entities.Rol
++import com.example.proyectozoomx.entities.Usuario
++import com.example.proyectozoomx.repositorio.ParametrosSQL
++import com.example.proyectozoomx.repositorio.RepositorioParametros
+ import com.example.proyectozoomx.usescases.ZoomApi
+ import kotlinx.android.synthetic.main.activity_zoom_login.*
+ import kotlinx.coroutines.launch
+@@ -11,27 +17,43 @@
+ class ZoomLoginActivity : AppCompatActivity() {
+ 
+     private lateinit var api: ZoomApi
++    private lateinit var repositorio: RepositorioParametros
+ 
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
++
+         setContentView(R.layout.activity_zoom_login)
+         //api = ClientZoomApi(Usuario("adm","adm"), "https://zoomx.freeddns.org:8443/")
+ 
++        repositorio = ParametrosSQL(baseZoom(this, "Parametros", null, 1))
++        //TODO crear intancia    api = ClientZoomApi(repositorio.getUrl().urlcompleta())
++
++
+         init()
+     }
+ 
+-    private fun init(){
++    private fun init() {
+         send_login.setOnClickListener {
+-            lifecycleScope.launch{
+-                resultUsuario.text = api.send().toString()
+-                //TODO si login es exitoso tenemos que ir a Zoom_Menu_Principal
++            lifecycleScope.launch {
++                val credenciales =
++                    Credenciales(edUsuario.text.toString(), edPassword.text.toString())
++                val usuario = api.send(credenciales)
++                goMenuPincipal(usuario, credenciales)
+             }
+ 
+ 
+         }
+-        cfgButton.setOnClickListener{
++        cfgButton.setOnClickListener {
+             // IR A CONFIGURACION
+             //cuando vaya a la vista de base configuracion configuro bbdd
+         }
+     }
++
++    fun goMenuPincipal(usuario: Usuario, credenciales: Credenciales) {
++        NavegacionValues(usuario, credenciales, this, ZoomMenuPrincipalActivity::class.java).go()
++    }
++
++
+ }
++
++
+Index: app/src/main/java/com/example/proyectozoomx/entities/Credenciales.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/proyectozoomx/entities/Credenciales.kt	(revision 130aa9b7ebab7665c66b94120529efbfbb482786)
++++ app/src/main/java/com/example/proyectozoomx/entities/Credenciales.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -1,3 +1,5 @@
+ package com.example.proyectozoomx.entities
+ 
+-data class Credenciales(val username: String, val password: String)
+\ No newline at end of file
++import java.io.Serializable
++
++data class Credenciales(val username: String, val password: String) : Serializable
+\ No newline at end of file
+Index: app/src/main/java/com/example/proyectozoomx/entities/Parametros.kt
+===================================================================
+--- app/src/main/java/com/example/proyectozoomx/entities/Parametros.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
++++ app/src/main/java/com/example/proyectozoomx/entities/Parametros.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -0,0 +1,7 @@
++package com.example.proyectozoomx.entities
++
++import java.io.Serializable
++
++data class Parametros(val url: String, val puerto: Int) : Serializable {
++
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/proyectozoomx/entities/Rol.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/proyectozoomx/entities/Rol.kt	(revision 130aa9b7ebab7665c66b94120529efbfbb482786)
++++ app/src/main/java/com/example/proyectozoomx/entities/Rol.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -1,5 +1,5 @@
+ package com.example.proyectozoomx.entities
+ 
+ enum class Rol {
+-    ADMIN, USER
++    ADMIN, USER,INVALID
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/proyectozoomx/entities/Usuario.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/proyectozoomx/entities/Usuario.kt	(revision 130aa9b7ebab7665c66b94120529efbfbb482786)
++++ app/src/main/java/com/example/proyectozoomx/entities/Usuario.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -1,5 +1,6 @@
+ package com.example.proyectozoomx.entities
+ 
++import java.io.Serializable
+ 
+ 
+-data class Usuario(val username: String, val rol: Rol)
+\ No newline at end of file
++data class Usuario(val username: String, val rol: Rol): Serializable
+\ No newline at end of file
+Index: app/src/main/java/com/example/proyectozoomx/repositorio/ParametrosSQL.kt
+===================================================================
+--- app/src/main/java/com/example/proyectozoomx/repositorio/ParametrosSQL.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
++++ app/src/main/java/com/example/proyectozoomx/repositorio/ParametrosSQL.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -0,0 +1,23 @@
++package com.example.proyectozoomx.repositorio
++
++import android.database.sqlite.SQLiteOpenHelper
++import android.util.Log
++import com.example.proyectozoomx.entities.Parametros
++
++
++data class ParametrosSQL (val HelperSql: SQLiteOpenHelper): RepositorioParametros() {
++
++    private val datos: String = "ParametrosSentenciaSQL"
++
++    override fun save(ParametrosSQL: Parametros) {
++
++        Log.i(datos, "Se insertan Datos")
++        val db = HelperSql.writableDatabase
++        val sql = "insert into Parametros (url,puerto) values (${ParametrosSQL.url},'${ParametrosSQL.puerto}')"
++        Log.i(datos, "Se Ejecutan Datos: $sql")
++        db.execSQL(sql)
++        db.close()
++
++
++    }
++}
+Index: app/src/main/java/com/example/proyectozoomx/repositorio/RepositorioParametros.kt
+===================================================================
+--- app/src/main/java/com/example/proyectozoomx/repositorio/RepositorioParametros.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
++++ app/src/main/java/com/example/proyectozoomx/repositorio/RepositorioParametros.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -0,0 +1,9 @@
++package com.example.proyectozoomx.repositorio
++
++import com.example.proyectozoomx.entities.Parametros
++
++
++open class RepositorioParametros {
++
++    open fun save(ParametrosSQL: Parametros) {}
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/proyectozoomx/usescases/ClientZoomApi.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/proyectozoomx/usescases/ClientZoomApi.kt	(revision 130aa9b7ebab7665c66b94120529efbfbb482786)
++++ app/src/main/java/com/example/proyectozoomx/usescases/ClientZoomApi.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -19,7 +19,7 @@
+     private val usuario: Credenciales,
+     private val urlApi: String
+ ) : ZoomApi {
+-    override suspend fun send(): Usuario =
++    override suspend fun send( usuario: Credenciales): Usuario =
+         withContext(Dispatchers.IO) {
+             val client = OkHttpClient()
+             val request = Request.Builder()
+@@ -34,7 +34,7 @@
+             } else {
+                 return@withContext Usuario(
+                     usuario.username,
+-                    Rol.ADMIN
++                    Rol.INVALID
+                 ) //TODO AGREGAR EL ROL DE INVALID A EL ADMIN QUE PUSE PARA QUE NO EXPLOTE
+             }
+         }
+@@ -95,7 +95,7 @@
+             return@withContext toSalasList(JSONObject(body))
+         }
+ 
+-    override suspend fun ingresarSala(sala: Sala) =
++    override suspend fun ingresarSala(usuario: Credenciales,sala: Sala) =
+         withContext(Dispatchers.IO) {
+             val client = OkHttpClient()
+             val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
+Index: app/src/main/java/com/example/proyectozoomx/usescases/ZoomApi.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/proyectozoomx/usescases/ZoomApi.kt	(revision 130aa9b7ebab7665c66b94120529efbfbb482786)
++++ app/src/main/java/com/example/proyectozoomx/usescases/ZoomApi.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -1,5 +1,6 @@
+ package com.example.proyectozoomx.usescases
+ 
++import com.example.proyectozoomx.entities.Credenciales
+ import com.example.proyectozoomx.entities.Identificacion
+ import com.example.proyectozoomx.entities.Sala
+ import com.example.proyectozoomx.entities.Usuario
+@@ -7,12 +8,12 @@
+ import java.time.LocalDateTime
+ 
+ interface ZoomApi {
+-    suspend fun send(): Usuario
++    suspend fun send(usuario:Credenciales): Usuario
+     suspend fun buscarPorId(id: Int): Sala
+     suspend fun buscarPorNombre(nombre: String): List<Sala>
+     suspend fun buscarPorResponsable(responsable: String): List<Sala>
+     suspend fun buscarPorFecha(fecha: LocalDateTime): List<Sala>
+-    suspend fun ingresarSala(sala: Sala)
++    suspend fun ingresarSala(usuario:Credenciales , sala: Sala)
+     suspend fun borrarSala(id: Int)
+     suspend fun modificarSala(id: Int, sala: Sala)
+ 
+Index: app/src/main/res/layout/activity_zoom__menu__principal.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_zoom__menu__principal.xml	(revision 130aa9b7ebab7665c66b94120529efbfbb482786)
++++ app/src/main/res/layout/activity_zoom__menu__principal.xml	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -25,7 +25,7 @@
+ 
+     <Button
+         android:id="@+id/btn_actualizar"
+-        android:layout_width="match_parent"
++        android:layout_width="148dp"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:backgroundTint="#536DFE"
+@@ -36,7 +36,7 @@
+ 
+     <Button
+         android:id="@+id/btn_Eliminar"
+-        android:layout_width="match_parent"
++        android:layout_width="182dp"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:backgroundTint="#536DFE"
+Index: app/src/main/res/layout/activity_zoom_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_zoom_login.xml	(revision 130aa9b7ebab7665c66b94120529efbfbb482786)
++++ app/src/main/res/layout/activity_zoom_login.xml	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -9,19 +9,31 @@
+     android:orientation="vertical">
+ 
+     <TextView
+-        android:id="@+id/resultUsuario"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="@string/usuario"
+         android:textSize="18sp" />
+ 
+     <EditText
+-        android:id="@+id/password"
++        android:id="@+id/edUsuario"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:layout_gravity="center"
+         android:ems="10"
+-        android:inputType="textPassword" />
++        android:hint="@string/ingrese_usuario"
++        android:inputType="textPersonName" />
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:text="@string/password"
++        android:textSize="18sp" />
++
++    <TextView
++        android:id="@+id/edPassword"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:textSize="18sp"
++        tools:text="Ingrese Password" />
+ 
+     <Button
+         android:id="@+id/send_login"
+@@ -36,6 +48,6 @@
+         android:id="@+id/cfgButton"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:text="Config" />
++        android:text="@string/config" />
+ 
+ </LinearLayout>
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision 130aa9b7ebab7665c66b94120529efbfbb482786)
++++ app/src/main/res/values/strings.xml	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -29,4 +29,8 @@
+     <string name="id_a_buscar">Id a Buscar</string>
+     <string name="buscar">Buscar</string>
+     <string name="modificar_sala">MODIFICAR SALA</string>
++    <string name="config">Config</string>
++    <string name="password">Password</string>
++    <string name="ingrese_usuario">Ingrese Usuario</string>
++
+ </resources>
+Index: app/src/test/java/com/example/proyectozoomx/ZoomApiUnitTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/test/java/com/example/proyectozoomx/ZoomApiUnitTest.kt	(revision 130aa9b7ebab7665c66b94120529efbfbb482786)
++++ app/src/test/java/com/example/proyectozoomx/ZoomApiUnitTest.kt	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -115,9 +115,9 @@
+         runBlocking {
+             val credenciales = Credenciales("adm", "adm")
+             val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
+-            api.ingresarSala(
++            api.ingresarSala(credenciales,
+                 sala = Sala(
+-                    "Otra Prueba Javier",
++                    "oooOtra Prueba Javier",
+                     "Otro Responsable",
+                     (LocalDateTime.parse("2020-11-26T00:56:00")),
+                     2,
+@@ -135,7 +135,7 @@
+         runBlocking {
+             val credenciales = Credenciales("adm", "adm")
+             val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
+-            api.borrarSala(8)
++            api.borrarSala(11)
+ 
+ 
+         }
+Index: gradle/wrapper/local.properties
+===================================================================
+--- gradle/wrapper/local.properties	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
++++ gradle/wrapper/local.properties	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -0,0 +1,10 @@
++## This file is automatically generated by Android Studio.
++# Do not modify this file -- YOUR CHANGES WILL BE ERASED!
++#
++# This file should *NOT* be checked into Version Control Systems,
++# as it contains information specific to your local configuration.
++#
++# Location of the SDK. This is only used by Gradle.
++# For customization when using a Version Control System, please read the
++# header note.
++sdk.dir=C\:\\Users\\javie\\AppData\\Local\\Android\\Sdk
+\ No newline at end of file
+Index: gradle/wrapper/local.properties.properties
+===================================================================
+--- gradle/wrapper/local.properties.properties	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
++++ gradle/wrapper/local.properties.properties	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -0,0 +1,10 @@
++## This file is automatically generated by Android Studio.
++# Do not modify this file -- YOUR CHANGES WILL BE ERASED!
++#
++# This file should *NOT* be checked into Version Control Systems,
++# as it contains information specific to your local configuration.
++#
++# Location of the SDK. This is only used by Gradle.
++# For customization when using a Version Control System, please read the
++# header note.
++sdk.dir=C\:\\Users\\javie\\AppData\\Local\\Android\\Sdk
+\ No newline at end of file
+Index: local.properties
+===================================================================
+--- local.properties	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
++++ local.properties	(revision 5812e4aa5e66e68911e84f0b63d6bc94f7897b8f)
+@@ -0,0 +1,10 @@
++## This file is automatically generated by Android Studio.
++# Do not modify this file -- YOUR CHANGES WILL BE ERASED!
++#
++# This file should *NOT* be checked into Version Control Systems,
++# as it contains information specific to your local configuration.
++#
++# Location of the SDK. This is only used by Gradle.
++# For customization when using a Version Control System, please read the
++# header note.
++sdk.dir=C\:\\Users\\javie\\AppData\\Local\\Android\\Sdk
+\ No newline at end of file

@@ -1,9 +1,12 @@
-package com.example.proyectozoomx.repositorio
+package com.example.proyectozoomx.repo;
+import com.example.proyectozoomx.entities.UrlApi;
 
-import com.example.proyectozoomx.entities.Parametros
 
+interface RepositorioParametros {
 
-open class RepositorioParametros {
+    fun  save(urlApi: UrlApi)
+    fun ConsultarBd() : UrlApi
+    fun update(urlApi: UrlApi)
 
-    open fun save(ParametrosSQL: Parametros) {}
 }
+
