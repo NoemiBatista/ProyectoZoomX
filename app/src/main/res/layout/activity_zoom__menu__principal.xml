@@ -25,7 +25,7 @@
 
     <Button
         android:id="@+id/btn_actualizar"
-        android:layout_width="match_parent"
+        android:layout_width="148dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="#536DFE"
@@ -36,7 +36,7 @@
 
     <Button
         android:id="@+id/btn_Eliminar"
-        android:layout_width="match_parent"
+        android:layout_width="182dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="#536DFE"

@@ -9,19 +9,31 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/resultUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/usuario"
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/edUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:hint="@string/ingrese_usuario"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/edPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        tools:text="Ingrese Password" />
 
     <Button
         android:id="@+id/send_login"
@@ -36,6 +48,6 @@
         android:id="@+id/cfgButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Config" />
+        android:text="@string/config" />
 
 </LinearLayout>

@@ -115,9 +115,9 @@ class ZoomApiUnitTest {
         runBlocking {
             val credenciales = Credenciales("adm", "adm")
             val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
-            api.ingresarSala(
+            api.ingresarSala(credenciales,
                 sala = Sala(
-                    "Otra Prueba Javier",
+                    "oooOtra Prueba Javier",
                     "Otro Responsable",
                     (LocalDateTime.parse("2020-11-26T00:56:00")),
                     2,
@@ -135,7 +135,7 @@ class ZoomApiUnitTest {
         runBlocking {
             val credenciales = Credenciales("adm", "adm")
             val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
-            api.borrarSala(8)
+            api.borrarSala(11)
 
 
         }

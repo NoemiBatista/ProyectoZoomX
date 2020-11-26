@@ -19,7 +19,7 @@ class ClientZoomApi(
     private val usuario: Credenciales,
     private val urlApi: String
 ) : ZoomApi {
-    override suspend fun send(): Usuario =
+    override suspend fun send( usuario: Credenciales): Usuario =
         withContext(Dispatchers.IO) {
             val client = OkHttpClient()
             val request = Request.Builder()
@@ -34,7 +34,7 @@ class ClientZoomApi(
             } else {
                 return@withContext Usuario(
                     usuario.username,
-                    Rol.ADMIN
+                    Rol.INVALID
                 ) //TODO AGREGAR EL ROL DE INVALID A EL ADMIN QUE PUSE PARA QUE NO EXPLOTE
             }
         }
@@ -95,7 +95,7 @@ class ClientZoomApi(
             return@withContext toSalasList(JSONObject(body))
         }
 
-    override suspend fun ingresarSala(sala: Sala) =
+    override suspend fun ingresarSala(usuario: Credenciales,sala: Sala) =
         withContext(Dispatchers.IO) {
             val client = OkHttpClient()
             val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()

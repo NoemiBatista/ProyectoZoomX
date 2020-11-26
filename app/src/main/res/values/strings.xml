@@ -29,4 +29,8 @@
     <string name="id_a_buscar">Id a Buscar</string>
     <string name="buscar">Buscar</string>
     <string name="modificar_sala">MODIFICAR SALA</string>
+    <string name="config">Config</string>
+    <string name="password">Password</string>
+    <string name="ingrese_usuario">Ingrese Usuario</string>
+
 </resources>
