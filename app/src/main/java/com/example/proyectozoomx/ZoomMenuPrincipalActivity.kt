@@ -2,40 +2,66 @@ package com.example.proyectozoomx
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.proyectozoomx.entities.Credenciales
+import com.example.proyectozoomx.entities.Usuario
 import kotlinx.android.synthetic.main.activity_zoom__menu__principal.*
 
 
+
 class ZoomMenuPrincipalActivity : AppCompatActivity() {
+
+    private lateinit var credenciales : Credenciales
+    private lateinit var usuario: Usuario
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_zoom__menu__principal)
 
+        val bundle: Bundle? = this.intent.extras
+        credenciales= bundle!!.getSerializable("credenciales") as Credenciales
+        usuario= bundle!!.getSerializable("usuario") as Usuario
 
-        val intent1 = Intent(this@ZoomMenuPrincipalActivity, IngresoSalaActivity::class.java)
-        startActivity(intent)
+
+
 
         init()
 
 
     }
+    private fun goIngresoSalaActivity(){
+        NavegacionValues(usuario, credenciales, this, IngresoSalaActivity::class.java).go()
+    }
+    private fun goModificarActivity(){
+        NavegacionValues(usuario, credenciales, this, ModificarActivity::class.java).go()
+    }
+    private fun goBuscarActivity(){
+        NavegacionValues(usuario, credenciales, this, BuscarActivity::class.java).go()
+    }
+    private fun goEliminarActivity(){
+        NavegacionValues(usuario, credenciales, this, EliminarActivity::class.java).go()
+    }
+    private fun goConfigActivity(){
+        NavegacionValues(usuario, credenciales, this, ConfigActivity::class.java).go()
+    }
+
 
     private fun init() {
         btn_registrar.setOnClickListener {
-            //TODO ir a ACTIVITY REGISTRAR
+            goIngresoSalaActivity()
         }
         btn_busqueda.setOnClickListener {
-            //TODO  ir a ACTIVITY BUSQUEDA
+            goBuscarActivity()
         }
         btn_actualizar.setOnClickListener {
-            //TODO ir a ACTIVITY ACTUALIZAR
+            goModificarActivity()
         }
         btn_Eliminar.setOnClickListener {
-            //TODO ir a ACTIVITY ELIMINAR
+            goEliminarActivity()
         }
         btn_config.setOnClickListener {
-            //TODO ir a ACTIVITY Configuracion
+            goConfigActivity()
         }
         btn_salir.setOnClickListener {
             finish()
