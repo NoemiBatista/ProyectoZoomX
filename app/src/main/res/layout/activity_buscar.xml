@@ -4,64 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="30dp"
     android:orientation="vertical"
-    tools:context=".BuscarActivity">
+    tools:context=".view.BuscarActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buscar" />
+        android:layout_marginBottom="30dp"
+        android:gravity="center_horizontal"
+        android:text="@string/buscar"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/edNombreSalaABuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
         android:ems="10"
-        android:hint="Ingrese Nombre Sala"
-        android:inputType="textPersonName" />
+        android:hint="@string/ingrese_nombre_sala"
+        android:inputType="textPersonName"
+        android:textSize="12sp" />
 
     <Button
         android:id="@+id/btnBuscarSalaPorNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buscar por Nombre" />
+        android:layout_marginBottom="30dp"
+        android:text="@string/buscar_por_nombre"
+        android:textSize="12sp" />
 
     <EditText
         android:id="@+id/edResponsableABuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
         android:ems="10"
-        android:hint="Ingrese Responsable Sala"
-        android:inputType="textPersonName" />
+        android:hint="@string/ingrese_responsable_sala"
+        android:inputType="textPersonName"
+        android:textSize="12sp" />
 
     <Button
         android:id="@+id/btnBuscarPorResponsable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buscar por Responsable" />
+        android:layout_marginBottom="30dp"
+        android:text="@string/buscar_por_responsable"
+        android:textSize="12sp" />
 
     <EditText
         android:id="@+id/edFechaABuscar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
         android:ems="10"
-        android:hint="Ingrese Fecha Reserva"
-        android:inputType="textPersonName" />
+        android:hint="@string/ingrese_fecha_reserva"
+        android:inputType="textPersonName"
+        android:textSize="12sp" />
 
     <Button
         android:id="@+id/btnBuscarPorFecha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buscar por Fecha" />
+        android:layout_marginBottom="14dp"
+        android:text="@string/buscar_por_fecha"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/tvResultadoBusqueda"
         android:layout_width="match_parent"
-        android:layout_height="104dp" />
+        android:layout_height="100dp"
+        android:layout_marginBottom="14dp" />
 
     <Button
         android:id="@+id/btnRegresarBuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Regresar" />
+        android:text="@string/volver"
+        android:textSize="14sp" />
 </LinearLayout>

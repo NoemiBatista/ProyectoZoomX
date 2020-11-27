@@ -1,8 +1,9 @@
-package com.example.proyectozoomx
+package com.example.proyectozoomx.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import com.example.proyectozoomx.R
 import kotlinx.android.synthetic.main.activity_ingreso__sala.*
 import kotlinx.android.synthetic.main.activity_zoom_login.*
 import kotlinx.coroutines.launch

@@ -1,11 +1,12 @@
-package com.example.proyectozoomx
+package com.example.proyectozoomx.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.proyectozoomx.view.NavegacionValues
 import com.example.proyectozoomx.Persistence.baseZoom
+import com.example.proyectozoomx.R
 import com.example.proyectozoomx.entities.Credenciales
-import com.example.proyectozoomx.entities.Rol
 import com.example.proyectozoomx.entities.Usuario
 import com.example.proyectozoomx.repositorio.ParametrosSQL
 import com.example.proyectozoomx.repositorio.RepositorioParametros

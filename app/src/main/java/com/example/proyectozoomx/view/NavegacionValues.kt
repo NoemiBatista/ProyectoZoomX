@@ -1,4 +1,4 @@
-package com.example.proyectozoomx
+package com.example.proyectozoomx.view
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,7 +1,8 @@
-package com.example.proyectozoomx
+package com.example.proyectozoomx.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.proyectozoomx.R
 import kotlinx.android.synthetic.main.activity_config.*
 
 class ConfigActivity : AppCompatActivity() {

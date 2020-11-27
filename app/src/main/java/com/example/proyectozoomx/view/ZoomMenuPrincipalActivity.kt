@@ -1,11 +1,12 @@
-package com.example.proyectozoomx
+package com.example.proyectozoomx.view
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.proyectozoomx.view.NavegacionValues
+import com.example.proyectozoomx.R
 import com.example.proyectozoomx.entities.Credenciales
 import com.example.proyectozoomx.entities.Usuario
+import com.example.proyectozoomx.view.*
 import kotlinx.android.synthetic.main.activity_zoom__menu__principal.*
 
 

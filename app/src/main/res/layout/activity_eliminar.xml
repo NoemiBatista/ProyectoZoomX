@@ -5,30 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EliminarActivity">
+    tools:context=".view.EliminarActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eliminar" />
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/eliminar_sala"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/edIdAEliminar"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:ems="10"
-        android:hint="Id a Eliminar"
+        android:hint="@string/id_a_eliminar"
         android:inputType="number" />
 
     <Button
         android:id="@+id/btn_EliminarPorId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eliminar" />
+        android:layout_marginBottom="10dp"
+        android:text="@string/eliminarr"
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/btn_regresarEliminar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/regresar" />
+        android:text="@string/atraz"
+        android:textSize="14sp" />
 </LinearLayout>

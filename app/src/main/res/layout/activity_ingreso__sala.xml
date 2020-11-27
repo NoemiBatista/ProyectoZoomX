@@ -7,32 +7,37 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".IngresoSalaActivity">
+    tools:context=".view.IngresoSalaActivity">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Ingresar" />
+        android:layout_marginBottom="20dp"
+        android:text="Ingresar"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tvNombre"
-        android:layout_width="259dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:text="@string/nombre"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tvResponsable"
-        android:layout_width="259dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:text="@string/responsable"
         android:textSize="20sp" />
 
     <EditText
         android:id="@+id/tvFechaReserva"
-        android:layout_width="259dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="2020-11-10T10:00 "
         android:inputType="datetime"
@@ -41,8 +46,9 @@
 
     <EditText
         android:id="@+id/tvTiempoReserva"
-        android:layout_width="259dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:ems="10"
         android:inputType="time"
         android:text="@string/tiempo_de_reserva"
@@ -50,21 +56,26 @@
 
     <TextView
         android:id="@+id/tvTextUrl"
-        android:layout_width="258dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:text="@string/url_de_icono"
         android:textSize="20sp" />
 
     <Button
         android:id="@+id/btn_guardar"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/ingresar_sala" />
+        android:layout_marginBottom="20dp"
+        android:text="@string/ingresar_sala"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/btn_regresar"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/regresar" />
+        android:layout_marginBottom="20dp"
+        android:text="@string/regresar"
+        android:textSize="20sp" />
 
 </LinearLayout>

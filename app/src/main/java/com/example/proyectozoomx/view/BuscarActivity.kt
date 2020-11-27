@@ -1,10 +1,10 @@
-package com.example.proyectozoomx
+package com.example.proyectozoomx.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
+import com.example.proyectozoomx.R
 import com.example.proyectozoomx.entities.Sala
 import com.example.proyectozoomx.usescases.ZoomApi
 import kotlinx.android.synthetic.main.activity_buscar.*

@@ -8,38 +8,30 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/usuario"
-        android:textSize="18sp" />
-
     <EditText
         android:id="@+id/edUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="@string/ingrese_usuario"
-        android:inputType="textPersonName" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/password"
-        android:textSize="18sp" />
+        android:inputType="textPersonName"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/edPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        tools:text="Ingrese Password" />
+        android:layout_marginBottom="20dp"
+        android:textSize="20sp"
+        tools:text="@string/Ingrese_Password" />
 
     <Button
         android:id="@+id/send_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
         android:text="@string/ingresar"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -48,6 +40,8 @@
         android:id="@+id/cfgButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/config" />
+        android:layout_marginBottom="20dp"
+        android:text="@string/config"
+        android:textSize="20sp" />
 
 </LinearLayout>

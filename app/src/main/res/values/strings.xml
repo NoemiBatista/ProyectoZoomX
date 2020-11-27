@@ -32,5 +32,30 @@
     <string name="config">Config</string>
     <string name="password">Password</string>
     <string name="ingrese_usuario">Ingrese Usuario</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="registrar">Registrar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="configuracion">Configuracion</string>
+
+    <string name="ingrese_nombre_sala">Ingrese Nombre Sala</string>
+    <string name="buscar_por_nombre">Buscar por Nombre</string>
+    <string name="ingrese_responsable_sala">Ingrese Responsable Sala</string>
+    <string name="buscar_por_responsable">Buscar por Responsable</string>
+    <string name="ingrese_fecha_reserva">Ingrese Fecha Reserva</string>
+    <string name="buscar_por_fecha">Buscar por Fecha</string>
+    <string name="volver">Volver</string>
+    <string name="Ingrese_Password">Ingrese Password</string>
+
+    <string name="id_a_eliminar">Id a Eliminar</string>
+
+    <string name="ingrese_puerto">Ingrese Puerto</string>
+    <string name="ingrese_url">Ingrese Url</string>
+
+    <string name="Guardar">Guardar</string>
+    <string name="buscar_sala">Buscar Sala</string>
+    <string name="atraz">Atraz</string>
+    <string name="eliminar_sala">Eliminar Sala</string>
+    <string name="configuraciones">Configuraciones</string>
+    <string name="eliminarr">Eliminarr</string>
 
 </resources>

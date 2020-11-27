@@ -1,8 +1,9 @@
-package com.example.proyectozoomx
+package com.example.proyectozoomx.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import com.example.proyectozoomx.R
 import com.example.proyectozoomx.entities.Sala
 import kotlinx.android.synthetic.main.activity_ingreso__sala.*
 import kotlinx.android.synthetic.main.activity_modificar.*
@@ -10,7 +11,7 @@ import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
 class ModificarActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+   override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modificar)
 

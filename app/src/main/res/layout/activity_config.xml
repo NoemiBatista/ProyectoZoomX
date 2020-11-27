@@ -5,42 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ConfigActivity">
+    tools:context=".view.ConfigActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Configuracion"
-        android:textSize="14sp"
-        android:inputType="number"/>
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="20dp"
+        android:inputType="number"
+        android:text="@string/configuraciones"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/edPuerto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:ems="10"
-        android:hint="Ingrese Puerto"
-        android:inputType="textPersonName" />
+        android:hint="@string/ingrese_puerto"
+        android:inputType="textPersonName"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/edUrl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:ems="10"
-        android:hint="Ingrese Url"
-        android:inputType="textPersonName" />
+        android:hint="@string/ingrese_url"
+        android:inputType="textPersonName"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/btnGuardar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar" />
+        android:layout_marginBottom="20dp"
+        android:text="@string/Guardar"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/btnVolver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Volver" />
+        android:layout_marginBottom="20dp"
+        android:text="@string/volver"
+        android:textSize="20sp" />
 
 
 </LinearLayout>

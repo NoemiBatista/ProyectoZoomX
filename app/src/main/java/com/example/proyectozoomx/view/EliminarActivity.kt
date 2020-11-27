@@ -1,8 +1,9 @@
-package com.example.proyectozoomx
+package com.example.proyectozoomx.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import com.example.proyectozoomx.R
 import kotlinx.android.synthetic.main.activity_eliminar.*
 import kotlinx.android.synthetic.main.activity_zoom__menu__principal.*
 import kotlinx.coroutines.launch
