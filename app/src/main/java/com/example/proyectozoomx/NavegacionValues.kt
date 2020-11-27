@@ -15,7 +15,7 @@ class NavegacionValues(
 ) {
 
     fun go() {
-        val intent = Intent(origen, destino)
+        val intent = Intent(origen,destino)
         val bundle = Bundle()
         bundle.putSerializable("usuario", usuario)
         bundle.putSerializable("credenciales", credenciales)

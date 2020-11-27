@@ -20,7 +20,7 @@ class ModificarActivity : AppCompatActivity() {
     private fun init() {
         btn_guardarModificar.setOnClickListener {
             lifecycleScope.launch {
-                //TODO INVOCAR AL METODO PATCH DE LA API ( fun givenAdmin_whenPatchSala_thenGetResponse204() )
+
             }
         }
         btn_regresarModificar.setOnClickListener {

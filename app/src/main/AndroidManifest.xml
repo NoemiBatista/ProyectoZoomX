@@ -11,13 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BuscarActivity"></activity>
+        <activity
+            android:name=".ZoomLoginActivity"
+            android:label="Login Activity"
+          >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".BuscarActivity" />
         <activity android:name=".EliminarActivity" />
         <activity android:name=".ModificarActivity" />
         <activity android:name=".ConfigActivity" />
         <activity android:name=".IngresoSalaActivity" />
         <activity android:name=".ZoomMenuPrincipalActivity" />
-        <activity android:name=".ZoomLoginActivity" />
-    </application>
 
+    </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

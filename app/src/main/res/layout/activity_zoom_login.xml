@@ -28,12 +28,13 @@
         android:text="@string/password"
         android:textSize="18sp" />
 
-    <TextView
+    <EditText
         android:id="@+id/edPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        tools:text="Ingrese Password" />
+        android:ems="10"
+        android:hint="Ingrese Password"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/send_login"
