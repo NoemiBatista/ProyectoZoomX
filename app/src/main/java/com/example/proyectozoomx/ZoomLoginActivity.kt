@@ -1,7 +1,10 @@
 package com.example.proyectozoomx
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.proyectozoomx.Persistence.baseZoom
@@ -18,8 +21,7 @@ import kotlinx.coroutines.launch
 
 class ZoomLoginActivity : AppCompatActivity() {
 
-    private lateinit var credenciales: Credenciales
-    private lateinit var usuario: Usuario
+
 
 
     private lateinit var api: ZoomApi
@@ -28,43 +30,61 @@ class ZoomLoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_zoom_login)
-
-
-
-        //api = ClientZoomApi(Usuario("adm","adm"), "https://zoomx.freeddns.org:8443/")
+     val credenciales = Credenciales(edUsuario.text.toString(),edPassword.text.toString())
 
         repositorio = ParametrosSQL(baseZoom(this, "Parametros", null, 1))
-       api = ClientZoomApi(usuario = Credenciales("adm","adm"),"https://zoomx.freeddns.org:8443/usuario")
+        api = ClientZoomApi(credenciales,"https://zoomx.freeddns.org:8443/usuario/")
 
 
         init()
     }
 
     private fun init() {
+
         send_login.setOnClickListener {
             lifecycleScope.launch {
                 val credenciales =
                     Credenciales(edUsuario.text.toString(), edPassword.text.toString())
                 val usuario = api.send(credenciales)
-                goZoomMenuPrincipalActivity(usuario, credenciales)
+                validator(usuario)
+
+
             }
 
 
         }
         cfgButton.setOnClickListener {
             goConfigActivity()
+        }
 
+
+    }
+
+
+    fun validator(usuario: Usuario) {
+        if (usuario.rol != Rol.INVALID) {
+
+            goZoomMenuPrincipalActivity()
+        } else {
+            Toast.makeText(this, "LOGIN INOCRRECTO", Toast.LENGTH_SHORT).show()
         }
     }
 
-    fun goZoomMenuPrincipalActivity(usuario: Usuario, credenciales: Credenciales) {
-        NavegacionValues(usuario, credenciales, this, ZoomMenuPrincipalActivity::class.java).go()
+    fun goZoomMenuPrincipalActivity() {
+        NavegacionValues(
+            usuario = Usuario("adm", Rol.ADMIN),
+            credenciales = Credenciales("adm", "adm"),
+            this, ZoomMenuPrincipalActivity::class.java
+        ).go()
     }
-
     fun goConfigActivity() {
-        NavegacionValues(usuario = Usuario("adm",Rol.ADMIN), credenciales = Credenciales("adm","adm"), this, ConfigActivity::class.java).go()
-    }
 
+        startActivity(Intent(this, ConfigActivity::class.java))
+//        NavegacionValues(usuario = Usuario("adm",
+//            Rol.ADMIN), credenciales = Credenciales("adm","adm"), this, ConfigActivity::class.java).go()
+    }
 }
+
+
 
 

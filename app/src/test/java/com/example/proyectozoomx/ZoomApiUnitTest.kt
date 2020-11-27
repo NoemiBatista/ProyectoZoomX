@@ -3,7 +3,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.proyectozoomx.entities.Credenciales
 import com.example.proyectozoomx.entities.Sala
 import com.example.proyectozoomx.usescases.ClientZoomApi
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import okhttp3.Credentials

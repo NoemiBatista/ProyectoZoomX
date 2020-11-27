@@ -26,7 +26,7 @@ class BuscarActivity : AppCompatActivity() {
             lifecycleScope.launch {
 
                 val salas : List<Sala> = api.buscarPorNombre(btnBuscarSalaPorNombre.text.toString()) // TODO en nombre va el recibido desde el tex
-                Log.d("salas",salas.toString())
+
             }
         }
         btnBuscarPorFecha.setOnClickListener{

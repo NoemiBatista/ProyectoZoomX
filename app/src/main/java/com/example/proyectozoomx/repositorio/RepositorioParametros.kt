@@ -1,13 +1,14 @@
 package com.example.proyectozoomx.repositorio;
 
+import com.example.proyectozoomx.entities.Parametros
 import com.example.proyectozoomx.entities.UrlApi;
 
 
 interface RepositorioParametros {
 
-    fun save(urlApi: UrlApi)
-    fun ConsultarBd(): UrlApi
-    fun update(urlApi: UrlApi)
+    fun save(parametros: Parametros )
+    fun consultarBd(): UrlApi
+    fun update(parametros: Parametros)
 
 }
 

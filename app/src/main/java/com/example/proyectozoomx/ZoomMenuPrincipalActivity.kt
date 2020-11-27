@@ -3,7 +3,7 @@ package com.example.proyectozoomx
 import android.content.Intent
 import android.os.Bundle
 import android.view.View.GONE
-import android.widget.Button
+
 import androidx.appcompat.app.AppCompatActivity
 import com.example.proyectozoomx.entities.Credenciales
 import com.example.proyectozoomx.entities.Rol

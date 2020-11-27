@@ -35,7 +35,7 @@ class ClientZoomApi(
                 return@withContext Usuario(
                     usuario.username,
                     Rol.INVALID
-                ) //TODO AGREGAR EL ROL DE INVALID A EL ADMIN QUE PUSE PARA QUE NO EXPLOTE
+                )
             }
         }
 
@@ -131,7 +131,7 @@ class ClientZoomApi(
                 .patch(body).build()
             val response = client.newCall(request).execute()
             response.close()
-    }
+        }
 }
 
 
@@ -188,4 +188,3 @@ fun convertSalaToJSON(sala: Sala): JSONObject {
 
 
 }
-

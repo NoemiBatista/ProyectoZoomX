@@ -2,7 +2,7 @@ package com.example.proyectozoomx.entities
 
 data class UrlApi(val url: String, val puerto: Int) {
 
-    fun urlYpuerto(): String {
+    fun urlConcatenada(): String {
 
         return url + ":" + puerto
 
