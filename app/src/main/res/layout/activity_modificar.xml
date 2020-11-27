@@ -26,18 +26,18 @@
         android:layout_height="wrap_content"
         android:text="@string/buscar" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvNombreModificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/nombre"
+        android:hint="Ingree Nombre"
         android:textSize="24sp" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvResponsableModificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/responsable"
+        android:hint="Ingree responsable"
         android:textSize="20sp" />
 
     <EditText
@@ -46,8 +46,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="2020-11-10T10:00 "
-        android:inputType="datetime"
-        android:text="@string/fecha_reserva"
+        android:inputType="text"
         android:textSize="20sp" />
 
     <EditText
@@ -55,15 +54,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Tiempo de Reserva"
         android:inputType="time"
-        android:text="@string/tiempo_de_reserva"
         android:textSize="20sp" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvUrModificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/url_de_icono"
+        android:hint="Url"
         android:textSize="20sp" />
 
     <Button

@@ -21,15 +21,15 @@ class ZoomMenuPrincipalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_zoom__menu__principal)
 
-        val bundle: Bundle? = this.intent.extras
+        val bundle = this.intent.extras
         credenciales = bundle!!.getSerializable("credenciales") as Credenciales
         usuario = bundle!!.getSerializable("usuario") as Usuario
 
-        tvUsuarioLogueado.text= usuario.rol.name
+        tvUsuarioLogueado.text = usuario.rol.name
         if (usuario.rol == Rol.USER) {
             btn_registrar.visibility = GONE
             btn_actualizar.visibility = GONE
-            menu_Principal.visibility = GONE
+            btn_Eliminar.visibility = GONE
         }
 
 
@@ -41,23 +41,58 @@ class ZoomMenuPrincipalActivity : AppCompatActivity() {
     }
 
     private fun goIngresoSalaActivity() {
-        NavegacionValues(usuario, credenciales, this, IngresoSalaActivity::class.java).go()
+        //    NavegacionValues(usuario, credenciales, this, IngresoSalaActivity::class.java).go()
+        val intent = Intent(this, IngresoSalaActivity::class.java)
+        val bundle = Bundle()
+        bundle.putSerializable("usuario", usuario)
+        bundle.putSerializable("credenciales", credenciales)
+        intent.putExtras(bundle)
+        startActivity(intent)
+        finish()
     }
 
     private fun goModificarActivity() {
-        NavegacionValues(usuario, credenciales, this, ModificarActivity::class.java).go()
+//        NavegacionValues(usuario, credenciales, this, ModificarActivity::class.java).go()
+        val intent = Intent(this, ModificarActivity::class.java)
+        val bundle = Bundle()
+        bundle.putSerializable("usuario", usuario)
+        bundle.putSerializable("credenciales", credenciales)
+        intent.putExtras(bundle)
+        startActivity(intent)
+        finish()
     }
 
     private fun goBuscarActivity() {
-        NavegacionValues(usuario, credenciales, this, BuscarActivity::class.java).go()
+        //    NavegacionValues(usuario, credenciales, this, BuscarActivity::class.java).go()
+        val intent = Intent(this, BuscarActivity::class.java)
+        val bundle = Bundle()
+        bundle.putSerializable("usuario", usuario)
+        bundle.putSerializable("credenciales", credenciales)
+        intent.putExtras(bundle)
+        startActivity(intent)
+        finish()
     }
 
     private fun goEliminarActivity() {
-        NavegacionValues(usuario, credenciales, this, EliminarActivity::class.java).go()
+//        NavegacionValues(usuario, credenciales, this, EliminarActivity::class.java).go()
+        val intent = Intent(this, EliminarActivity::class.java)
+        val bundle = Bundle()
+        bundle.putSerializable("usuario", usuario)
+        bundle.putSerializable("credenciales", credenciales)
+        intent.putExtras(bundle)
+        startActivity(intent)
+        finish()
     }
 
     private fun goConfigActivity() {
-        NavegacionValues(usuario, credenciales, this, ConfigActivity::class.java).go()
+//        NavegacionValues(usuario, credenciales, this, ConfigActivity::class.java).go()
+        val intent = Intent(this, ConfigActivity::class.java)
+        val bundle = Bundle()
+        bundle.putSerializable("usuario", usuario)
+        bundle.putSerializable("credenciales", credenciales)
+        intent.putExtras(bundle)
+        startActivity(intent)
+        finish()
     }
 
 

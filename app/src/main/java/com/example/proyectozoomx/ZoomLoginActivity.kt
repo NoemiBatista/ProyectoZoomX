@@ -22,18 +22,16 @@ import kotlinx.coroutines.launch
 class ZoomLoginActivity : AppCompatActivity() {
 
 
-
-
     private lateinit var api: ZoomApi
     private lateinit var repositorio: RepositorioParametros
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_zoom_login)
-     val credenciales = Credenciales(edUsuario.text.toString(),edPassword.text.toString())
+
 
         repositorio = ParametrosSQL(baseZoom(this, "Parametros", null, 1))
-        api = ClientZoomApi(credenciales,"https://zoomx.freeddns.org:8443/usuario/")
+        api = ClientZoomApi("https://zoomx.freeddns.org:8443/usuario/")
 
 
         init()
@@ -46,7 +44,8 @@ class ZoomLoginActivity : AppCompatActivity() {
                 val credenciales =
                     Credenciales(edUsuario.text.toString(), edPassword.text.toString())
                 val usuario = api.send(credenciales)
-                validator(usuario)
+                validator(usuario,credenciales)
+
 
 
             }
@@ -61,25 +60,35 @@ class ZoomLoginActivity : AppCompatActivity() {
     }
 
 
-    fun validator(usuario: Usuario) {
+    fun validator(usuario: Usuario,credenciales: Credenciales) {
         if (usuario.rol != Rol.INVALID) {
 
-            goZoomMenuPrincipalActivity()
+            goZoomMenuPrincipalActivity(usuario,credenciales)
         } else {
             Toast.makeText(this, "LOGIN INOCRRECTO", Toast.LENGTH_SHORT).show()
         }
     }
 
-    fun goZoomMenuPrincipalActivity() {
-        NavegacionValues(
-            usuario = Usuario("adm", Rol.ADMIN),
-            credenciales = Credenciales("adm", "adm"),
-            this, ZoomMenuPrincipalActivity::class.java
-        ).go()
+    fun goZoomMenuPrincipalActivity(usuario: Usuario,credenciales: Credenciales) {
+       val intent=Intent(this, ZoomMenuPrincipalActivity::class.java)
+        val bundle = Bundle()
+        bundle.putSerializable("usuario", usuario)
+        bundle.putSerializable("credenciales", credenciales)
+        intent.putExtras(bundle)
+        startActivity(intent)
+        finish()
+
+//        NavegacionValues(
+//            usuario = Usuario("adm", Rol.ADMIN),
+//            credenciales = Credenciales("adm", "adm"),
+//            this, ZoomMenuPrincipalActivity::class.java
+//        ).go()
     }
+
     fun goConfigActivity() {
 
         startActivity(Intent(this, ConfigActivity::class.java))
+        this.finish()
 //        NavegacionValues(usuario = Usuario("adm",
 //            Rol.ADMIN), credenciales = Credenciales("adm","adm"), this, ConfigActivity::class.java).go()
     }

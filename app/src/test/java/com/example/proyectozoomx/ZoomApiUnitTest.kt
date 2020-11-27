@@ -60,8 +60,8 @@ class ZoomApiUnitTest {
     fun givenID_whenBuscarPorId_thenGetSala() {
         runBlocking {
             val credenciales = Credenciales("adm", "adm")
-            val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
-            val sala = api.buscarPorId(1)
+            val api = ClientZoomApi( "https://zoomx.freeddns.org:8443")
+            val sala = api.buscarPorId(credenciales,1)
 
             assertThat(sala).isNotNull
 
@@ -73,8 +73,8 @@ class ZoomApiUnitTest {
     fun givenNombre_whenBuscarPorNombre_thenGetSalasList() {
         runBlocking {
             val credenciales = Credenciales("adm", "adm")
-            val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
-            val salas = api.buscarPorNombre("Sala")
+            val api = ClientZoomApi( "https://zoomx.freeddns.org:8443")
+            val salas = api.buscarPorNombre(credenciales,"Sala")
 
             assertThat(salas).isNotNull
 
@@ -87,8 +87,8 @@ class ZoomApiUnitTest {
     fun givenResponsable_whenBuscarPorResponsable_thenGetSalasList() {
         runBlocking {
             val credenciales = Credenciales("adm", "adm")
-            val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
-            val salas = api.buscarPorResponsable(" ")
+            val api = ClientZoomApi("https://zoomx.freeddns.org:8443")
+            val salas = api.buscarPorResponsable(credenciales,"Javier")
 
             assertThat(salas).isNotNull
 
@@ -100,8 +100,8 @@ class ZoomApiUnitTest {
     fun givenFecha_whenBuscarPorFecha_thenGetSalasList() {
         runBlocking {
             val credenciales = Credenciales("adm", "adm")
-            val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
-            val salas = api.buscarPorFecha(LocalDateTime.parse("2020-11-26T00:56:00"))
+            val api = ClientZoomApi( "https://zoomx.freeddns.org:8443")
+            val salas = api.buscarPorFecha(credenciales,LocalDateTime.parse("2020-11-26T00:56:00"))
 
             assertThat(salas)
 
@@ -113,10 +113,10 @@ class ZoomApiUnitTest {
     fun givenAdmin_whenPostSala_thenGetResponse201() {
         runBlocking {
             val credenciales = Credenciales("adm", "adm")
-            val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
+            val api = ClientZoomApi("https://zoomx.freeddns.org:8443")
             api.ingresarSala(credenciales,
                 sala = Sala(
-                    "oooOtra Prueba Javier",
+                    "oooooooooooOtra Prueba Javier",
                     "Otro Responsable",
                     (LocalDateTime.parse("2020-11-26T00:56:00")),
                     2,
@@ -133,8 +133,8 @@ class ZoomApiUnitTest {
     fun givenAdmin_whenDeleteSala_thenGetResponse204() {
         runBlocking {
             val credenciales = Credenciales("adm", "adm")
-            val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
-            api.borrarSala(11)
+            val api = ClientZoomApi( "https://zoomx.freeddns.org:8443")
+            api.borrarSala(credenciales,11)
 
 
         }
@@ -145,8 +145,8 @@ class ZoomApiUnitTest {
     fun givenAdmin_whenPatchSala_thenGetResponse204() {
         runBlocking {
             val credenciales = Credenciales("adm", "adm")
-            val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
-            api.modificarSala(
+            val api = ClientZoomApi("https://zoomx.freeddns.org:8443")
+            api.modificarSala(credenciales,
                 10,
                 sala = Sala(
                     "sala modificada",

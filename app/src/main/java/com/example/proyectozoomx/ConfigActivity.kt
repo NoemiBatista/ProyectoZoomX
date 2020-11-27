@@ -14,10 +14,16 @@ class ConfigActivity : AppCompatActivity() {
 
     private lateinit var repositorio: RepositorioParametros
     private lateinit var urlDeBase: UrlApi
+    private lateinit var credenciales: Credenciales
+    private lateinit var usuario: Usuario
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config)
+        val bundle: Bundle? = this.intent.extras
+        credenciales = bundle!!.getSerializable("credenciales") as Credenciales
+        usuario = bundle!!.getSerializable("usuario") as Usuario
+
         repositorio = ParametrosSQL(baseZoom(this, "Parametros", null, 1))
         urlDeBase = repositorio.consultarBd()
         edUrl.setText(urlDeBase.url)
@@ -31,7 +37,7 @@ class ConfigActivity : AppCompatActivity() {
     private fun init() {
         btnGuardar.setOnClickListener {
             var parametros = Parametros(edUrl.text.toString(), edPuerto.text.toString().toInt())
-            if (urlDeBase.puerto == 0 && urlDeBase.url == "3") {
+            if (urlDeBase.puerto == 0 && urlDeBase.url == "") {
                 repositorio.save(parametros)
             }
             repositorio.update(parametros)
@@ -45,13 +51,12 @@ class ConfigActivity : AppCompatActivity() {
 
     fun goZoomLoginActivity() {
 
-        startActivity(Intent(this, ZoomLoginActivity::class.java))
+        val intent= Intent(this, ZoomMenuPrincipalActivity::class.java)
+        val bundle = Bundle()
+        bundle.putSerializable("usuario", usuario)
+        bundle.putSerializable("credenciales", credenciales)
+        intent.putExtras(bundle)
+        startActivity(intent)
         finish()
-//        NavegacionValues(
-//            usuario = Usuario(
-//                "adm",
-//                Rol.ADMIN
-//            ), credenciales = Credenciales("adm", "adm"), this, ZoomLoginActivity::class.java
-//        ).go()
     }
 }

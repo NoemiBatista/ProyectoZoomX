@@ -7,7 +7,7 @@ data class Sala(
     val responsable: String,
     val fechaDeReserva: LocalDateTime,
     val tiempoReservaEnHoras: Int,
-    val url: String
+    val icono: String
 )
 
 

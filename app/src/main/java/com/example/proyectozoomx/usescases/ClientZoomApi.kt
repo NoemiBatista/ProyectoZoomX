@@ -16,7 +16,7 @@ import java.time.LocalDateTime
 // comentario de prueba
 
 class ClientZoomApi(
-    private val usuario: Credenciales,
+
     private val urlApi: String
 ) : ZoomApi {
     override suspend fun send( usuario: Credenciales): Usuario =
@@ -39,7 +39,7 @@ class ClientZoomApi(
             }
         }
 
-    override suspend fun buscarPorId(id: Int): Sala =
+    override suspend fun buscarPorId(usuario: Credenciales,id: Int): Sala =
         withContext(Dispatchers.IO) {
             val client = OkHttpClient()
             val request = Request.Builder()
@@ -52,7 +52,7 @@ class ClientZoomApi(
             return@withContext toSala(JSONObject(body))
         }
 
-    override suspend fun buscarPorNombre(nombre: String): List<Sala> =
+    override suspend fun buscarPorNombre(usuario: Credenciales,nombre: String): List<Sala> =
         withContext(Dispatchers.IO) {
             val client = OkHttpClient()
             val request = Request.Builder()
@@ -67,7 +67,7 @@ class ClientZoomApi(
 
         }
 
-    override suspend fun buscarPorResponsable(responsable: String): List<Sala> =
+    override suspend fun buscarPorResponsable(usuario: Credenciales,responsable: String): List<Sala> =
         withContext(Dispatchers.IO) {
             val client = OkHttpClient()
             val request = Request.Builder()
@@ -82,7 +82,7 @@ class ClientZoomApi(
 
         }
 
-    override suspend fun buscarPorFecha(fecha: LocalDateTime): List<Sala> =
+    override suspend fun buscarPorFecha(usuario: Credenciales,fecha: LocalDateTime): List<Sala> =
         withContext(Dispatchers.IO) {
             val client = OkHttpClient()
             val request = Request.Builder()
@@ -109,7 +109,7 @@ class ClientZoomApi(
 
         }
 
-    override suspend fun borrarSala(id: Int) =
+    override suspend fun borrarSala(usuario: Credenciales,id: Int) =
         withContext(Dispatchers.IO) {
             val client = OkHttpClient()
             val request = Request.Builder()
@@ -120,7 +120,7 @@ class ClientZoomApi(
             response.close()
         }
 
-    override suspend fun modificarSala(id: Int, sala: Sala) =
+    override suspend fun modificarSala(usuario: Credenciales,id: Int, sala: Sala) =
         withContext(Dispatchers.IO) {
             val client = OkHttpClient()
             val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
@@ -180,9 +180,9 @@ fun convertSalaToJSON(sala: Sala): JSONObject {
     val json = JSONObject()
     json.put("nombre", sala.nombre)
     json.put("responsable", sala.responsable)
-    json.put("fechaDeReserva", sala.fechaDeReserva)
+    json.put("fechaDeReserva", sala.fechaDeReserva.toString())
     json.put("tiempoReservaEnHoras", sala.tiempoReservaEnHoras)
-    json.put("icono", sala.url)
+    json.put("icono", sala.icono)
 
     return json
 

@@ -41,7 +41,7 @@
         android:text="Buscar por Responsable" />
 
     <EditText
-        android:id="@+id/edFechaABuscar2"
+        android:id="@+id/edFechaABuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -54,14 +54,14 @@
         android:layout_height="wrap_content"
         android:text="Buscar por Fecha" />
 
-    <TextView
-        android:id="@+id/tvResultadoBusqueda"
-        android:layout_width="match_parent"
-        android:layout_height="104dp" />
-
     <Button
         android:id="@+id/btnRegresarBuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Regresar" />
+
+    <ListView
+        android:id="@+id/tvResultadoBusqueda"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
