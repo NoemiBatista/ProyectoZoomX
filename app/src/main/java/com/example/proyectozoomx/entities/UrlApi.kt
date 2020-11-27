@@ -1,5 +1,6 @@
 package com.example.proyectozoomx.entities
 
+
 data class UrlApi(val url: String, val puerto: Int){
 
     fun urlYpuerto(): String {
@@ -8,3 +9,6 @@ data class UrlApi(val url: String, val puerto: Int){
 
     }
 }
+
+
+

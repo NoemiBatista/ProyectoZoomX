@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import android.os.Build
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.proyectozoomx.entities.Credenciales
@@ -5,6 +6,13 @@ import com.example.proyectozoomx.entities.Sala
 import com.example.proyectozoomx.usescases.ClientZoomApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+=======
+
+import android.os.Build
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.proyectozoomx.entities.Credenciales
+import com.example.proyectozoomx.usescases.ClientZoomApi
+>>>>>>> c4d4aa4670665dc7bd5728fdf76e2d35a51ebc9e
 import kotlinx.coroutines.runBlocking
 import okhttp3.Credentials
 import okhttp3.OkHttpClient
@@ -61,11 +69,16 @@ class ZoomApiUnitTest {
     fun givenID_whenBuscarPorId_thenGetSala() {
         runBlocking {
             val credenciales = Credenciales("adm", "adm")
+<<<<<<< HEAD
             val api = ClientZoomApi(credenciales, "https://zoomx.freeddns.org:8443")
+=======
+            val api = ClientZoomApi("https://zoomx.freeddns.org:8443")
+>>>>>>> c4d4aa4670665dc7bd5728fdf76e2d35a51ebc9e
             val sala = api.buscarPorId(1)
 
             assertThat(sala).isNotNull
 
+<<<<<<< HEAD
         }
     }
 
@@ -78,10 +91,13 @@ class ZoomApiUnitTest {
             val salas = api.buscarPorNombre("Sala")
 
             assertThat(salas).isNotNull
+=======
+>>>>>>> c4d4aa4670665dc7bd5728fdf76e2d35a51ebc9e
 
         }
     }
 
+<<<<<<< HEAD
 
     @Test
     @Throws(IOException::class)
@@ -167,3 +183,6 @@ class ZoomApiUnitTest {
 
 
 
+=======
+}
+>>>>>>> c4d4aa4670665dc7bd5728fdf76e2d35a51ebc9e

@@ -1,30 +1,44 @@
 package com.example.proyectozoomx.usescases
 
 
+<<<<<<< HEAD
 import com.example.proyectozoomx.entities.*
+=======
+import com.example.proyectozoomx.entities.Credenciales
+import com.example.proyectozoomx.entities.Rol
+import com.example.proyectozoomx.entities.Sala
+import com.example.proyectozoomx.entities.Usuario
+>>>>>>> c4d4aa4670665dc7bd5728fdf76e2d35a51ebc9e
 import kotlinx.coroutines.Dispatchers
-import okhttp3.OkHttpClient
-import okhttp3.Credentials
 import kotlinx.coroutines.withContext
+<<<<<<< HEAD
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 
+=======
+import okhttp3.OkHttpClient
+import okhttp3.Request
+>>>>>>> c4d4aa4670665dc7bd5728fdf76e2d35a51ebc9e
 import org.json.JSONObject
 import java.time.LocalDateTime
 
 // comentario de prueba
 
 class ClientZoomApi(
-    private val usuario: Credenciales,
+
     private val urlApi: String
 ) : ZoomApi {
+<<<<<<< HEAD
     override suspend fun send( usuario: Credenciales): Usuario =
+=======
+    override suspend fun send(credenciales: Credenciales): Usuario =
+>>>>>>> c4d4aa4670665dc7bd5728fdf76e2d35a51ebc9e
         withContext(Dispatchers.IO) {
             val client = OkHttpClient()
             val request = Request.Builder()
-                .url(urlApi)
-                .header("Authorization", Credentials.basic(usuario.username, usuario.password))
+                .url(urlApi+"/usuario")
+    //            .header("Authorization", Credentials.basic(usuario.username, usuario.password))
                 .build()
             val response = client.newCall(request).execute()
             if (response.code == 200) {
@@ -67,19 +81,43 @@ class ClientZoomApi(
 
         }
 
+<<<<<<< HEAD
     override suspend fun buscarPorResponsable(responsable: String): List<Sala> =
         withContext(Dispatchers.IO) {
             val client = OkHttpClient()
             val request = Request.Builder()
                 .url(urlApi + "/sala/search/findAllByResponsableContains?responsable=$responsable")
                 .header("Authorization", Credentials.basic(usuario.username, usuario.password))
+=======
+    override suspend fun buscarPorId(id: Int): Sala =
+        withContext(Dispatchers.IO) {
+            val client = OkHttpClient()
+            val request = Request.Builder()
+                .url(urlApi+"/sala/$id")
+               // .header("Authorization", Credentials.basic(usuario.username, usuario.password))
+>>>>>>> c4d4aa4670665dc7bd5728fdf76e2d35a51ebc9e
                 .build()
             val response = client.newCall(request).execute()
             val body = response.body!!.string()
             response.close()
+<<<<<<< HEAD
             return@withContext toSalasList(JSONObject(body))
 
 
+=======
+            return@withContext toSala(JSONObject(body))
+        }
+
+
+    fun toUsuario(body: JSONObject): Usuario {
+        val username = body.getString("username")
+        val authorities = body.getJSONArray("authorities")
+        val rolAsString = authorities.getJSONObject(0).getString("authority")
+        val rol = if (rolAsString == "ROLE_ADMIN") {
+            Rol.ADMIN
+        } else {
+            Rol.USER
+>>>>>>> c4d4aa4670665dc7bd5728fdf76e2d35a51ebc9e
         }
 
     override suspend fun buscarPorFecha(fecha: LocalDateTime): List<Sala> =
@@ -132,6 +170,7 @@ class ClientZoomApi(
             val response = client.newCall(request).execute()
             response.close()
     }
+<<<<<<< HEAD
 }
 
 
@@ -189,3 +228,15 @@ fun convertSalaToJSON(sala: Sala): JSONObject {
 
 }
 
+=======
+    fun toSala(body: JSONObject): Sala {
+        val nombre = body.getString("nombre")
+        val responsable = body.getString("responsable")
+        val fechaDeReserva = LocalDateTime.parse(body.getString("fechaDeReserva"))
+        val tiempoReservaEnHoras = body.getInt("tiempoReservaEnHoras")
+        val url = body.getString("icono")
+
+        return Sala(nombre,responsable, fechaDeReserva,tiempoReservaEnHoras,url)
+    }
+}
+>>>>>>> c4d4aa4670665dc7bd5728fdf76e2d35a51ebc9e

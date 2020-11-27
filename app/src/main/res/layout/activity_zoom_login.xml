@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res-auto"
     android:id="@+id/text_Login"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    anddroid:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    layout_height="@dimen/material_emphasis_medium">
 
     <TextView
         android:layout_width="match_parent"

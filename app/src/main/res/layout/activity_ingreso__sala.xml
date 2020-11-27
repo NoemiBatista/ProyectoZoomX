@@ -11,12 +11,14 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_marginTop="1dp"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:text="Ingresar" />
 
     <TextView
         android:id="@+id/tvNombre"
+        android:layout_marginTop="20dp"
         android:layout_width="259dp"
         android:layout_height="wrap_content"
         android:text="@string/nombre"
@@ -24,6 +26,7 @@
 
     <TextView
         android:id="@+id/tvResponsable"
+        android:layout_marginTop="8dp"
         android:layout_width="259dp"
         android:layout_height="wrap_content"
         android:text="@string/responsable"
@@ -31,6 +34,7 @@
 
     <EditText
         android:id="@+id/tvFechaReserva"
+        android:layout_marginTop="8dp"
         android:layout_width="259dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -41,6 +45,7 @@
 
     <EditText
         android:id="@+id/tvTiempoReserva"
+        android:layout_marginTop="8dp"
         android:layout_width="259dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -50,6 +55,7 @@
 
     <TextView
         android:id="@+id/tvTextUrl"
+        android:layout_marginTop="8dp"
         android:layout_width="258dp"
         android:layout_height="wrap_content"
         android:text="@string/url_de_icono"
@@ -57,14 +63,18 @@
 
     <Button
         android:id="@+id/btn_guardar"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/buttom1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ingresar_sala" />
 
     <Button
         android:id="@+id/btn_regresar"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/buttom1"
         android:text="@string/regresar" />
 
 </LinearLayout>

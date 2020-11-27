@@ -2,6 +2,7 @@ package com.example.proyectozoomx.entities
 
 import java.time.LocalDateTime
 
+
 data class Sala(
     val nombre: String,
     val responsable: String,
@@ -9,6 +10,9 @@ data class Sala(
     val tiempoReservaEnHoras: Int,
     val url: String
 )
+
+
+
 
 
 

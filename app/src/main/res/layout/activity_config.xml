@@ -8,14 +8,17 @@
     tools:context=".ConfigActivity">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="102dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:inputType="number"
         android:text="Configuracion"
-        android:textSize="14sp"
-        android:inputType="number"/>
+        android:textSize="14sp" />
 
     <EditText
         android:id="@+id/edPuerto"
+        android:layout_marginTop="90dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -24,6 +27,7 @@
 
     <EditText
         android:id="@+id/edUrl"
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -32,12 +36,16 @@
 
     <Button
         android:id="@+id/btnGuardar"
+        android:background="@drawable/buttom1"
+        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Guardar" />
 
     <Button
         android:id="@+id/btnVolver"
+        android:background="@drawable/buttom1"
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Volver" />

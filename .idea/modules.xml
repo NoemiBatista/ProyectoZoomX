@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.ProyectoZoomX.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidStudioProjects.ProyectoZoomX.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ProyectoZoomX.iml" filepath="$PROJECT_DIR$/.idea/ProyectoZoomX.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ProyectoZoomX.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ProyectoZoomX.app.iml" />
     </modules>

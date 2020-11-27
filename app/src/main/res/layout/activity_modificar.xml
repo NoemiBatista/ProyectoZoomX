@@ -8,26 +8,32 @@
     tools:context=".ModificarActivity">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="107dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center|center_horizontal|center_vertical"
+        android:layout_marginTop="50dp"
         android:text="@string/modificar" />
 
     <EditText
         android:id="@+id/edIdABuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="@string/id_a_buscar"
         android:inputType="number" />
 
     <Button
         android:id="@+id/btn_BuscarPorId"
+        android:layout_marginTop="45dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/buttom1"
         android:text="@string/buscar" />
 
     <TextView
         android:id="@+id/tvNombreModificar"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nombre"
@@ -35,6 +41,7 @@
 
     <TextView
         android:id="@+id/tvResponsableModificar"
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/responsable"
@@ -42,6 +49,7 @@
 
     <EditText
         android:id="@+id/tvFehcaReservaModificar"
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -52,6 +60,7 @@
 
     <EditText
         android:id="@+id/tvTiempoReservaModificar"
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -61,6 +70,7 @@
 
     <TextView
         android:id="@+id/tvUrModificar"
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/url_de_icono"
@@ -68,14 +78,18 @@
 
     <Button
         android:id="@+id/btn_guardarModificar"
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/buttom1"
         android:text="@string/modificar_sala" />
 
     <Button
         android:id="@+id/btn_regresarModificar"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/buttom1"
         android:text="@string/regresar" />
 
 </LinearLayout>
