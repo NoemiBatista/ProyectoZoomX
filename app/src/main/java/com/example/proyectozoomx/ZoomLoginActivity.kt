@@ -29,7 +29,7 @@ class ZoomLoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_zoom_login)
 
-
+        //en esta activity no nos dejo usar los datos del repo, en las demas si
         repositorio = ParametrosSQL(baseZoom(this, "Parametros", null, 1))
         api = ClientZoomApi("https://zoomx.freeddns.org:8443/usuario/")
 

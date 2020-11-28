@@ -8,12 +8,17 @@
     tools:context=".BuscarActivity">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="105dp"
         android:layout_height="wrap_content"
-        android:text="Buscar" />
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:text="Buscar"
+
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/edNombreSalaABuscar"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -22,6 +27,8 @@
 
     <Button
         android:id="@+id/btnBuscarSalaPorNombre"
+        android:background="@drawable/buttom1"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Buscar por Nombre" />
@@ -29,6 +36,7 @@
     <EditText
         android:id="@+id/edResponsableABuscar"
         android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Ingrese Responsable Sala"
@@ -36,12 +44,16 @@
 
     <Button
         android:id="@+id/btnBuscarPorResponsable"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/buttom1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Buscar por Responsable" />
 
     <EditText
         android:id="@+id/edFechaABuscar"
+
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -50,12 +62,16 @@
 
     <Button
         android:id="@+id/btnBuscarPorFecha"
+        android:background="@drawable/buttom1"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Buscar por Fecha" />
 
     <Button
         android:id="@+id/btnRegresarBuscar"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/buttom1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Regresar" />

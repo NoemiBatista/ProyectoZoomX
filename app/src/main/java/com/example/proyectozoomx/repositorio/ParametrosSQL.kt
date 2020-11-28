@@ -14,7 +14,8 @@ data class ParametrosSQL(val dbHelper: SQLiteOpenHelper) : RepositorioParametros
     override fun save(parametros: Parametros) {
 
         val db = dbHelper.writableDatabase
-        val sql = "insert into Parametros (id,url,puerto) values(1,  '${parametros.url}','${parametros.puerto}')"
+        val sql =
+            "insert into Parametros (id,url,puerto) values(1,  '${parametros.url}','${parametros.puerto}')"
 
         db.execSQL(sql)
         db.close()
@@ -22,7 +23,8 @@ data class ParametrosSQL(val dbHelper: SQLiteOpenHelper) : RepositorioParametros
 
     override fun update(parametros: Parametros) {
         val db = dbHelper.writableDatabase
-        val sql = "update Parametros set url='${parametros.url}', puerto='${parametros.puerto}'"
+        val sql =
+            "update Parametros set url='${parametros.url}', puerto='${parametros.puerto}' where id=1"
 
         db.execSQL(sql)
         db.close()
@@ -41,6 +43,8 @@ data class ParametrosSQL(val dbHelper: SQLiteOpenHelper) : RepositorioParametros
             puerto = cursor.getInt(1)
 
         }
+        cursor.close()
+        db.close()
         return UrlApi(url, puerto)
 
     }

@@ -5,16 +5,23 @@ import android.os.Bundle
 import android.view.View.GONE
 
 import androidx.appcompat.app.AppCompatActivity
+import com.example.proyectozoomx.Persistence.baseZoom
 import com.example.proyectozoomx.entities.Credenciales
 import com.example.proyectozoomx.entities.Rol
 import com.example.proyectozoomx.entities.Usuario
+import com.example.proyectozoomx.repositorio.ParametrosSQL
+import com.example.proyectozoomx.repositorio.RepositorioParametros
+import com.example.proyectozoomx.usescases.ClientZoomApi
+import com.example.proyectozoomx.usescases.ZoomApi
 import kotlinx.android.synthetic.main.activity_zoom__menu__principal.*
 
 
 class ZoomMenuPrincipalActivity : AppCompatActivity() {
 
+    private lateinit var api: ZoomApi
     private lateinit var credenciales: Credenciales
     private lateinit var usuario: Usuario
+    private lateinit var repositorio: RepositorioParametros
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +31,11 @@ class ZoomMenuPrincipalActivity : AppCompatActivity() {
         val bundle = this.intent.extras
         credenciales = bundle!!.getSerializable("credenciales") as Credenciales
         usuario = bundle!!.getSerializable("usuario") as Usuario
+
+        repositorio = ParametrosSQL(baseZoom(this, "Parametros", null, 1))
+        val parametros = repositorio.consultarBd()
+        val url = parametros.urlConcatenada()
+        api = ClientZoomApi(url)
 
         tvUsuarioLogueado.text = usuario.rol.name
         if (usuario.rol == Rol.USER) {
@@ -41,7 +53,7 @@ class ZoomMenuPrincipalActivity : AppCompatActivity() {
     }
 
     private fun goIngresoSalaActivity() {
-        //    NavegacionValues(usuario, credenciales, this, IngresoSalaActivity::class.java).go()
+
         val intent = Intent(this, IngresoSalaActivity::class.java)
         val bundle = Bundle()
         bundle.putSerializable("usuario", usuario)
@@ -52,7 +64,7 @@ class ZoomMenuPrincipalActivity : AppCompatActivity() {
     }
 
     private fun goModificarActivity() {
-//        NavegacionValues(usuario, credenciales, this, ModificarActivity::class.java).go()
+
         val intent = Intent(this, ModificarActivity::class.java)
         val bundle = Bundle()
         bundle.putSerializable("usuario", usuario)
@@ -63,7 +75,7 @@ class ZoomMenuPrincipalActivity : AppCompatActivity() {
     }
 
     private fun goBuscarActivity() {
-        //    NavegacionValues(usuario, credenciales, this, BuscarActivity::class.java).go()
+
         val intent = Intent(this, BuscarActivity::class.java)
         val bundle = Bundle()
         bundle.putSerializable("usuario", usuario)
@@ -74,7 +86,7 @@ class ZoomMenuPrincipalActivity : AppCompatActivity() {
     }
 
     private fun goEliminarActivity() {
-//        NavegacionValues(usuario, credenciales, this, EliminarActivity::class.java).go()
+
         val intent = Intent(this, EliminarActivity::class.java)
         val bundle = Bundle()
         bundle.putSerializable("usuario", usuario)
@@ -85,7 +97,7 @@ class ZoomMenuPrincipalActivity : AppCompatActivity() {
     }
 
     private fun goConfigActivity() {
-//        NavegacionValues(usuario, credenciales, this, ConfigActivity::class.java).go()
+
         val intent = Intent(this, ConfigActivity::class.java)
         val bundle = Bundle()
         bundle.putSerializable("usuario", usuario)

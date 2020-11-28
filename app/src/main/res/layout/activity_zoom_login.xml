@@ -8,14 +8,24 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
         android:text="@string/usuario"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/edUsuario"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -24,31 +34,40 @@
 
     <TextView
         android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
         android:text="@string/password"
         android:textSize="18sp" />
 
     <EditText
+        android:layout_marginTop="10dp"
         android:id="@+id/edPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
         android:ems="10"
         android:hint="Ingrese Password"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/send_login"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/buttom1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/ingresar"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <Button
+        android:layout_marginTop="20dp"
+        android:background="@drawable/butrom22"
         android:id="@+id/cfgButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/config" />
+
+
 
 </LinearLayout>

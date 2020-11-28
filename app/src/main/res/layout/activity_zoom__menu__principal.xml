@@ -5,71 +5,90 @@
     android:id="@+id/menu_Principal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#202782"
     android:backgroundTint="?android:attr/textColorPrimaryInverse"
     android:gravity="center"
     android:nestedScrollingEnabled="false"
     android:orientation="vertical"
     tools:context=".ZoomMenuPrincipalActivity">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="311dp"
+        android:layout_height="150dp"
+
+        app:srcCompat="@android:drawable/presence_video_busy" />
+
     <TextView
         android:id="@+id/tvUsuarioLogueado"
-        android:layout_width="175dp"
+        android:layout_width="116dp"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_gravity="center"
+        android:text="TextView"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/btn_registrar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
         android:layout_gravity="center"
-        android:backgroundTint="#536DFE"
+        android:backgroundTint="#757575"
+        android:background="@drawable/buttom1"
         android:text="Registrar"
-        android:textColor="#FFFFFF"
+        android:textColor="#212121"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_actualizar"
-        android:layout_width="148dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:layout_gravity="center"
-        android:backgroundTint="#536DFE"
+        android:backgroundTint="#757575"
+        android:background="@drawable/buttom1"
         android:text="Actualizar"
-        android:textColor="#FFFFFF"
+        android:textColor="#212121"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_Eliminar"
-        android:layout_width="182dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:layout_gravity="center"
-        android:backgroundTint="#536DFE"
+        android:backgroundTint="#757575"
+        android:background="@drawable/buttom1"
         android:text="Eliminar"
-        android:textColor="#FFFFFF"
+        android:textColor="#212121"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_busqueda"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:backgroundTint="#536DFE"
+        android:background="@drawable/buttom1"
+        android:backgroundTint="#757575"
+        android:layout_marginTop="6dp"
         android:text="@string/busqueda_salas"
-        android:textColor="#FFFFFF"
+        android:textColor="#212121"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_config"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:layout_gravity="center"
-        android:backgroundTint="#536DFE"
+        android:backgroundTint="#757575"
+        android:background="@drawable/buttom1"
         android:text="Configuracion"
-        android:textColor="#FFFFFF"
+        android:textColor="#212121"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -77,11 +96,13 @@
         android:id="@+id/btn_salir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:layout_gravity="center"
-        android:backgroundTint="#536DFE"
+        android:backgroundTint="#B71C1C"
+        android:background="@drawable/butrom22"
         android:onClick="@string/ingresar"
         android:text="@string/salir"
-        android:textColor="#FFFFFF"
+        android:textColor="#212121"
         android:textSize="18sp"
         android:textStyle="bold" />
 

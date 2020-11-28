@@ -4,10 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import com.example.proyectozoomx.Persistence.baseZoom
 import com.example.proyectozoomx.entities.Credenciales
 import com.example.proyectozoomx.entities.Sala
 import com.example.proyectozoomx.entities.Usuario
 import com.example.proyectozoomx.repositorio.ParametrosSQL
+import com.example.proyectozoomx.repositorio.RepositorioParametros
 import com.example.proyectozoomx.usescases.ClientZoomApi
 import com.example.proyectozoomx.usescases.ZoomApi
 import kotlinx.android.synthetic.main.activity_ingreso__sala.*
@@ -17,7 +19,7 @@ import java.time.LocalDateTime
 class IngresoSalaActivity : AppCompatActivity() {
     private lateinit var sala: Sala
     private lateinit var api: ZoomApi
-    private lateinit var repositorio: ParametrosSQL
+    private lateinit var repositorio: RepositorioParametros
     private lateinit var credenciales: Credenciales
     private lateinit var usuario: Usuario
 
@@ -30,7 +32,12 @@ class IngresoSalaActivity : AppCompatActivity() {
         val bundle: Bundle? = this.intent.extras
         credenciales = bundle!!.getSerializable("credenciales") as Credenciales
         usuario = bundle!!.getSerializable("usuario") as Usuario
-        api = ClientZoomApi("https://zoomx.freeddns.org:8443")
+
+
+        repositorio = ParametrosSQL(baseZoom(this, "Parametros", null, 1))
+        val parametros = repositorio.consultarBd()
+        val url = parametros.urlConcatenada()
+        api = ClientZoomApi(url)
 
         init()
     }

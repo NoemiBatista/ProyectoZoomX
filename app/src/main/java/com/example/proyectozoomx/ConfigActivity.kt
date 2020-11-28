@@ -27,7 +27,7 @@ class ConfigActivity : AppCompatActivity() {
         repositorio = ParametrosSQL(baseZoom(this, "Parametros", null, 1))
         urlDeBase = repositorio.consultarBd()
         edUrl.setText(urlDeBase.url)
-        edPuerto.setText(urlDeBase.url.toString())
+        edPuerto.setText(urlDeBase.puerto.toString())
 
         init()
 
@@ -39,9 +39,11 @@ class ConfigActivity : AppCompatActivity() {
             var parametros = Parametros(edUrl.text.toString(), edPuerto.text.toString().toInt())
             if (urlDeBase.puerto == 0 && urlDeBase.url == "") {
                 repositorio.save(parametros)
-            }
-            repositorio.update(parametros)
+            } else {
+                repositorio.update(parametros)
 
+
+            }
             Toast.makeText(this, "Envio Correcto", Toast.LENGTH_SHORT).show()
         }
         btnVolver.setOnClickListener {
@@ -51,7 +53,7 @@ class ConfigActivity : AppCompatActivity() {
 
     fun goZoomLoginActivity() {
 
-        val intent= Intent(this, ZoomMenuPrincipalActivity::class.java)
+        val intent = Intent(this, ZoomMenuPrincipalActivity::class.java)
         val bundle = Bundle()
         bundle.putSerializable("usuario", usuario)
         bundle.putSerializable("credenciales", credenciales)

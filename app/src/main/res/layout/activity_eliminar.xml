@@ -8,12 +8,16 @@
     tools:context=".EliminarActivity">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="105dp"
         android:layout_height="wrap_content"
-        android:text="Eliminar" />
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:text="Eliminar"
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/edIdAEliminar"
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -22,12 +26,16 @@
 
     <Button
         android:id="@+id/btn_EliminarPorId"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/buttom1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Eliminar" />
 
     <Button
         android:id="@+id/btn_regresarEliminar"
+        android:background="@drawable/buttom1"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/regresar" />

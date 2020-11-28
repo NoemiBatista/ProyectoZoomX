@@ -10,17 +10,22 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
+import com.example.proyectozoomx.Persistence.baseZoom
 import com.example.proyectozoomx.entities.Credenciales
 import com.example.proyectozoomx.entities.Sala
 import com.example.proyectozoomx.entities.Usuario
+import com.example.proyectozoomx.repositorio.ParametrosSQL
+import com.example.proyectozoomx.repositorio.RepositorioParametros
 import com.example.proyectozoomx.usescases.ClientZoomApi
 import com.example.proyectozoomx.usescases.ZoomApi
 import kotlinx.android.synthetic.main.activity_buscar.*
+import kotlinx.android.synthetic.main.activity_config.*
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
 class BuscarActivity : AppCompatActivity() {
     private lateinit var sala: Sala
+    private lateinit var repositorio: RepositorioParametros
     private lateinit var api: ZoomApi
     private lateinit var credenciales: Credenciales
     private lateinit var usuario: Usuario
@@ -32,7 +37,10 @@ class BuscarActivity : AppCompatActivity() {
         credenciales = bundle!!.getSerializable("credenciales") as Credenciales
         usuario = bundle!!.getSerializable("usuario") as Usuario
 
-    api = ClientZoomApi("https://zoomx.freeddns.org:8443")
+        repositorio = ParametrosSQL(baseZoom(this, "Parametros", null, 1))
+        val parametros = repositorio.consultarBd()
+        val url = parametros.urlConcatenada()
+        api = ClientZoomApi(url)
 
         init()
     }
@@ -57,11 +65,10 @@ class BuscarActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 val fecha = LocalDateTime.parse(edFechaABuscar.text.toString())
                 val salas = api.buscarPorFecha(
-                    credenciales,fecha
+                    credenciales, fecha
                 )
                 var adapter = SalaAdapter(this@BuscarActivity, salas);
                 tvResultadoBusqueda.adapter = adapter
-
 
 
             }
@@ -91,12 +98,13 @@ class BuscarActivity : AppCompatActivity() {
 
     }
 
-    class SalaAdapter(private val context: Context, private val arrayList:List<Sala>) : BaseAdapter() {
+    class SalaAdapter(private val context: Context, private val arrayList: List<Sala>) :
+        BaseAdapter() {
         private lateinit var tvvNombre: TextView
         private lateinit var tvvResponsable: TextView
         private lateinit var tvvFechaReserva: TextView
         private lateinit var tvvHoras: TextView
-        
+
         override fun getCount(): Int {
             return arrayList.size
         }
