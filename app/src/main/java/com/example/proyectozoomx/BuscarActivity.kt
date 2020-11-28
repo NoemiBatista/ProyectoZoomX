@@ -1,9 +1,7 @@
 package com.example.proyectozoomx
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.proyectozoomx.entities.Sala
 import com.example.proyectozoomx.usescases.ZoomApi
@@ -25,8 +23,8 @@ class BuscarActivity : AppCompatActivity() {
         btnBuscarSalaPorNombre.setOnClickListener{
             lifecycleScope.launch {
 
-                val salas : List<Sala> = api.buscarPorNombre("sala") // TODO en nombre va el recibido desde el tex
-                Log.d("salas",salas.toString())
+                val salas : List<Sala> = api.buscarPorNombre(btnBuscarSalaPorNombre.text.toString()) // TODO en nombre va el recibido desde el tex
+
             }
         }
         btnBuscarPorFecha.setOnClickListener{

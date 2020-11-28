@@ -1,11 +1,8 @@
 package com.example.proyectozoomx.usescases
 
 import com.example.proyectozoomx.entities.Credenciales
-<<<<<<< HEAD
-import com.example.proyectozoomx.entities.Identificacion
 import com.example.proyectozoomx.entities.Sala
 import com.example.proyectozoomx.entities.Usuario
-import org.json.JSONObject
 import java.time.LocalDateTime
 
 interface ZoomApi {
@@ -19,12 +16,4 @@ interface ZoomApi {
     suspend fun modificarSala(id: Int, sala: Sala)
 
 
-=======
-import com.example.proyectozoomx.entities.Sala
-import com.example.proyectozoomx.entities.Usuario
-
-interface ZoomApi {
-    suspend fun send(credenciales: Credenciales): Usuario
-    suspend fun buscarPorId(id: Int): Sala
->>>>>>> c4d4aa4670665dc7bd5728fdf76e2d35a51ebc9e
 }

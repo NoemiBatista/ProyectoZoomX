@@ -10,7 +10,7 @@ class baseZoom (
     version: Int) : SQLiteOpenHelper(context, name, factory, version) {
 
 
-    private val sqlCreate = "create table UrlApi (id Integer primary key , url Varchar, puerto Integer)"
+    private val sqlCreate = "create table Parametros (id Integer primary key , url Varchar, puerto Integer)"
 
 
     override fun onCreate(db: SQLiteDatabase) {

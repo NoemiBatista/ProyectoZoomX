@@ -1,15 +1,17 @@
 package com.example.proyectozoomx
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.proyectozoomx.Persistence.baseZoom
 import com.example.proyectozoomx.entities.Credenciales
 import com.example.proyectozoomx.entities.Rol
 import com.example.proyectozoomx.entities.Usuario
-import com.example.proyectozoomx.repo.RepositorioParametros
 import com.example.proyectozoomx.repositorio.ParametrosSQL
-
+import com.example.proyectozoomx.repositorio.RepositorioParametros
+import com.example.proyectozoomx.usescases.ClientZoomApi
 import com.example.proyectozoomx.usescases.ZoomApi
 import kotlinx.android.synthetic.main.activity_zoom_login.*
 import kotlinx.coroutines.launch
@@ -17,44 +19,73 @@ import kotlinx.coroutines.launch
 
 class ZoomLoginActivity : AppCompatActivity() {
 
+
+
+
     private lateinit var api: ZoomApi
     private lateinit var repositorio: RepositorioParametros
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_zoom_login)
-        //api = ClientZoomApi(Usuario("adm","adm"), "https://zoomx.freeddns.org:8443/")
+     val credenciales = Credenciales(edUsuario.text.toString(),edPassword.text.toString())
 
         repositorio = ParametrosSQL(baseZoom(this, "Parametros", null, 1))
-        //TODO crear intancia    api = ClientZoomApi(repositorio.getUrl().urlcompleta())
+        api = ClientZoomApi(credenciales,"https://zoomx.freeddns.org:8443/usuario/")
 
 
         init()
     }
 
     private fun init() {
+
         send_login.setOnClickListener {
             lifecycleScope.launch {
-                val credenciales =
-                    Credenciales(edUsuario.text.toString(), edPassword.text.toString())
+                val credenciales = Credenciales(edUsuario.text.toString(), edPassword.text.toString())
                 val usuario = api.send(credenciales)
-                goMenuPincipal(usuario, credenciales)
+
+                validator(usuario)
+
+
             }
 
 
         }
         cfgButton.setOnClickListener {
-            // IR A CONFIGURACION
-            //cuando vaya a la vista de base configuracion configuro bbdd
+            goConfigActivity()
+        }
+
+
+    }
+
+
+    fun validator(usuario: Usuario) {
+        if (usuario.rol != Rol.INVALID) {
+
+            goZoomMenuPrincipalActivity()
+        } else {
+            Toast.makeText(this, "LOGIN INOCRRECTO", Toast.LENGTH_SHORT).show()
         }
     }
 
-    fun goMenuPincipal(usuario: Usuario, credenciales: Credenciales) {
-        NavegacionValues(usuario, credenciales, this, ZoomMenuPrincipalActivity::class.java).go()
+    fun goZoomMenuPrincipalActivity() {
+        NavegacionValues(
+             Usuario("adm", Rol.ADMIN),
+            Credenciales("adm", "adm"),
+            this, ZoomMenuPrincipalActivity::class.java
+        ).go()
     }
 
+    fun goConfigActivity() {
 
+        startActivity(Intent(this, ConfigActivity::class.java))
+        finish()
+//        NavegacionValues(usuario = Usuario("adm",
+//            Rol.ADMIN), credenciales = Credenciales("adm","adm"), this, ConfigActivity::class.java).go()
+    }
 }
+
+
 
 
